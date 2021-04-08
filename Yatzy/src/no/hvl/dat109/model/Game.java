@@ -5,7 +5,9 @@ import java.util.List;
 // Klasse for å lagre opplysninger om spillet
 // Tenker i utgangspunktet å ha terningene i Servleten
 public class Game {
+	// Liste med spillere som er med i spillet
 	private List<Player> players;
+	// Liste med lister med poeng for alle spillere i hver runde (Kunne muligens brukt todimensjonal tabell)
 	private List<List<Integer>> points;
 	
 	public Game(List<Player> players, List<List<Integer>> points) {
