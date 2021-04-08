@@ -2,6 +2,8 @@ package no.hvl.dat109.model;
 
 import java.util.List;
 
+// Klasse for å lagre opplysninger om spillet
+// Tenker i utgangspunktet å ha terningene i Servleten
 public class Game {
 	private List<Player> players;
 	private List<List<Integer>> points;
