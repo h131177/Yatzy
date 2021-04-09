@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Fra https://purecss.io/ -->
+<link rel="stylesheet"
+	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 <title>Login</title>
 </head>
 <body>
