@@ -27,5 +27,8 @@ public class Game {
 	public void setPoints(List<List<Integer>> points) {
 		this.points = points;
 	}
+	public void addPlayer(Player player) {
+		players.add(player);
+	}
 	
 }
