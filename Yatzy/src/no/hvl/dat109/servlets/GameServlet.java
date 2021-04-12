@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.helper.Helper;
 import no.hvl.dat109.model.Dice;
 import no.hvl.dat109.model.Player;
 import no.hvl.dat109.model.Position;
@@ -24,7 +25,6 @@ public class GameServlet extends HttpServlet {
     
 	private List<Dice> dice;
 	private List<Boolean> hold;
-	private List<Integer> numbers; 
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
@@ -43,7 +43,6 @@ public class GameServlet extends HttpServlet {
 		dice.add(d4);
 		dice.add(d5);
 		hold = new ArrayList<>();
-		numbers = new ArrayList<>();
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -79,6 +78,7 @@ public class GameServlet extends HttpServlet {
 		//Done
 		//counter == 0
 		//Regne ut poengsum ved hjelp av helper metode
+		//Helper.calculatePoints(position.getRow(), dice);
 		response.sendRedirect("game");
 	}
 
