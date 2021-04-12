@@ -23,19 +23,22 @@
 			</c:forEach> 
 			<td>
 			<form method="post" action="game">
-				<button type="submit" class="pure-button pure-button-primary">Roll</button>
-				<input type="hidden" value="roll" + name="roll">
+			<button type="submit" class="pure-button pure-button-primary">Done</button>
+				
 			</form>
 			</td>
 		</tr>
 		<tr>
 			<th bgcolor="#cccccc">Check</th>
+			<form method="post" action="game">
 			<td><input type="checkbox" id="check1" name="check1" value="1"></td>
 			<td><input type="checkbox" id="check2" name="check2" value="2"></td>
 			<td><input type="checkbox" id="check3" name="check3" value="3"></td>
 			<td><input type="checkbox" id="check4" name="check4" value="4"></td>
 			<td><input type="checkbox" id="check5" name="check5" value="5"></td>
-			<td><button type="submit" class="pure-button pure-button-primary">Done</button></td>
+			<td><button type="submit" class="pure-button pure-button-primary">Roll</button>
+				<input type="hidden" value="roll" + name="roll"></td>
+			</form>
 		</tr>
 					
 </table>
