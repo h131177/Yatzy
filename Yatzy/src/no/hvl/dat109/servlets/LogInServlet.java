@@ -25,7 +25,7 @@ public class LogInServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		player = new Player("Nokia", "Nokia", "Kjetil");
-		request.getSession().setAttribute("loggedIn", player.getUsername());
+		request.getSession().setAttribute("loggedIn", player);
 		response.sendRedirect("game");
 	}
 
