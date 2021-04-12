@@ -11,7 +11,7 @@ public class Dice {
 		this.value = value;
 	}
 
-	public int RollDice() {
-		return (int) (Math.random()*6 + 1);
+	public void RollDice() {
+		this.value = (int) (Math.random()*6 + 1);
 	}
 }
