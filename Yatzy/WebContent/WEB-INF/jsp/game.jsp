@@ -12,6 +12,7 @@
 <body>
 <h1>Yatzy</h1>
 
+<h3>Player logged in: ${loggedIn}</h3>
 
 <table class="pure-table">
 		<tr>
