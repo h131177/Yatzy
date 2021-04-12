@@ -64,6 +64,7 @@ public class GameServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Legge til hidden parameter slik at det blir mulig å sjekke om det er roll eller done knappen som trykkes
 		
 		//Roll
 		// Ta inn input fra checkboxes -> Liste med Boolean
@@ -73,12 +74,12 @@ public class GameServlet extends HttpServlet {
 			d.RollDice();
 		}
 		request.getSession().setAttribute("numbers", dice);
-		//counter++
+		counter++;
 		
 		//Done
 		//counter == 0
 		//Regne ut poengsum ved hjelp av helper metode
-		
+		response.sendRedirect("game");
 	}
 
 }
