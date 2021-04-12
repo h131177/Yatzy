@@ -31,16 +31,33 @@ public class GameServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		dice = new ArrayList<>();
+		dice = new ArrayList<>(5);
+		Dice d1 = new Dice();
+		Dice d2 = new Dice();
+		Dice d3 = new Dice();
+		Dice d4 = new Dice();
+		Dice d5 = new Dice();
+		dice.add(d1);
+		dice.add(d2);
+		dice.add(d3);
+		dice.add(d4);
+		dice.add(d5);
 		hold = new ArrayList<>();
 		numbers = new ArrayList<>();
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
+		
 	}
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Ikkje heilt rett
+		if(counter == 0) {
+			for (Dice d : dice) {
+				d.setValue(0);
+			}
+			request.getSession().setAttribute("numbers", dice);
+		}
+		
 		Player p = (Player) request.getSession().getAttribute("loggedIn");
 		players.put(p.getName(), position.getPlayer());
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
@@ -51,6 +68,11 @@ public class GameServlet extends HttpServlet {
 		//Roll
 		// Ta inn input fra checkboxes -> Liste med Boolean
 		//trille terninger
+		for (Dice d : dice) {
+			//if unchecked
+			d.RollDice();
+		}
+		request.getSession().setAttribute("numbers", dice);
 		//counter++
 		
 		//Done
