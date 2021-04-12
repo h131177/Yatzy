@@ -17,16 +17,15 @@ import no.hvl.dat109.model.Player;
 public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	Player user;
-	Game game;
+	private Player player;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("loggedIn", user);
-		game.addPlayer(user);
+		player = new Player("Nokia", "Nokia", "Kjetil");
+		request.getSession().setAttribute("loggedIn", player.getUsername());
 		response.sendRedirect("game");
 	}
 
