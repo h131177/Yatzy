@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,16 +13,14 @@
 <body>
 <h1>Yatzy</h1>
 
-<h3>Player logged in: ${loggedIn}</h3>
+<h3>Player logged in: ${loggedIn.username}</h3>
 
 <table class="pure-table">
 		<tr>
 			<th bgcolor="#cccccc">Dice</th>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
+			<c:forEach items="${numbers}" var="n">
+				<td>${n.value}</td>
+			</c:forEach> 
 			<td><button type="submit" class="pure-button pure-button-primary">Roll</button></td>
 		</tr>
 		<tr>
