@@ -1,6 +1,7 @@
 package no.hvl.dat109.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,12 +20,20 @@ import no.hvl.dat109.model.Position;
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	//INIT
 	private List<Dice> dice;
 	private List<Boolean> hold;
-	private List<Integer> tall; 
+	private List<Integer> numbers; 
 	private Position position;
 	private int counter;
+	
+	@Override
+	public void init() throws ServletException {
+		dice = new ArrayList<>();
+		hold = new ArrayList<>();
+		numbers = new ArrayList<>();
+		position = new Position(0, 0);
+		counter = 0;
+	}
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
