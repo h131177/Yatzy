@@ -21,7 +21,7 @@
 			<c:forEach items="${numbers}" var="n">
 				<td>${n.value}</td>
 			</c:forEach> 
-			<td><button type="submit" class="pure-button pure-button-primary">Roll</button></td>
+			<td><form method="post" action="game"><button type="submit" class="pure-button pure-button-primary">Roll</button></form></td>
 		</tr>
 		<tr>
 			<th bgcolor="#cccccc">Check</th>
