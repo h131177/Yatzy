@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,21 +11,20 @@
 <title>Yatzy Game</title>
 </head>
 <body>
-<h1>Yatzy</h1>
+	<h1>Yatzy</h1>
 
-<h3>Player logged in: ${loggedIn.username}</h3>
+	<h3>Player logged in: ${loggedIn.username}</h3>
 
-<table class="pure-table">
+	<table class="pure-table">
 		<tr>
 			<th bgcolor="#cccccc">Dice</th>
 			<c:forEach items="${numbers}" var="n">
 				<td>${n.value}</td>
-			</c:forEach> 
+			</c:forEach>
 			<td>
-			<form method="post" action="game">
-			<button type="submit" class="pure-button pure-button-primary">Done</button>
-				
-			</form>
+				<form method="post" action="game">
+					<button type="submit" class="pure-button pure-button-primary">Done</button>
+				</form>
 			</td>
 		</tr>
 		<tr>
@@ -36,46 +35,47 @@
 			<td><input type="checkbox" id="check3" name="check3" value="3"></td>
 			<td><input type="checkbox" id="check4" name="check4" value="4"></td>
 			<td><input type="checkbox" id="check5" name="check5" value="5"></td>
-			<td><button type="submit" class="pure-button pure-button-primary">Roll</button>
-				<input type="hidden" value="roll" + name="roll"></td>
+			<td><button type="submit"
+					class="pure-button pure-button-primary">Roll</button> <input
+				type="hidden" value="roll" + name="roll"></td>
 			</form>
 		</tr>
-					
-</table>
-<br>
-<table class="pure-table">
+
+	</table>
+	<br>
+	<table class="pure-table">
 		<tr bgcolor="#cccccc">
 			<th>Player</th>
 			<th>Kjetil</th>
 		</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Enere</td>
-						<td>5</td>
-					</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Enere</td>
-						<td>5</td>
-					</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Enere</td>
-						<td>5</td>
-					</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Enere</td>
-						<td>5</td>
-					</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Enere</td>
-						<td>5</td>
-					</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Enere</td>
-						<td>5</td>
-					</tr>
-					<tr bgcolor="#ffffff">
-						<td align="center">Sum</td>
-						<td>5</td>
-					</tr>
-</table>
+		<tr bgcolor="#ffffff">
+			<td align="center">Enere</td>
+			<td>5</td>
+		</tr>
+		<tr bgcolor="#ffffff">
+			<td align="center">Enere</td>
+			<td>5</td>
+		</tr>
+		<tr bgcolor="#ffffff">
+			<td align="center">Enere</td>
+			<td>5</td>
+		</tr>
+		<tr bgcolor="#ffffff">
+			<td align="center">Enere</td>
+			<td>5</td>
+		</tr>
+		<tr bgcolor="#ffffff">
+			<td align="center">Enere</td>
+			<td>5</td>
+		</tr>
+		<tr bgcolor="#ffffff">
+			<td align="center">Enere</td>
+			<td>5</td>
+		</tr>
+		<tr bgcolor="#ffffff">
+			<td align="center">Sum</td>
+			<td>5</td>
+		</tr>
+	</table>
 </body>
 </html>
