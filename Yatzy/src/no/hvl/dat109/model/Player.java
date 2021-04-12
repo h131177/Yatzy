@@ -4,13 +4,11 @@ public class Player {
 	private String username;
 	private String password;
 	private String name;
-	private int points;
 	
-	public Player(String username, String password, String name, int points) {
+	public Player(String username, String password, String name) {
 		this.username = username;
 		this.password = password;
 		this.name = name;
-		this.points = points;
 	}
 
 	public String getUsername() {
@@ -35,14 +33,6 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
 	}
 	
 }
