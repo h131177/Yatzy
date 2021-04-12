@@ -43,6 +43,11 @@ public class GameServlet extends HttpServlet {
 		dice.add(d4);
 		dice.add(d5);
 		hold = new ArrayList<>();
+		hold.add(false);
+		hold.add(false);
+		hold.add(false);
+		hold.add(false);
+		hold.add(false);
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -63,15 +68,25 @@ public class GameServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Legge til hidden parameter slik at det blir mulig å sjekke om det er roll eller done knappen som trykkes
+		//Hidden parameter slik at det blir mulig å sjekke om det er roll eller done knappen som trykkes
 		String hidden = request.getParameter("roll");
+		for(int c = 0; c < 5; c++) {
+			String b = request.getParameter("check" + c);
+			if(b == "true") {
+				hold.set(c, true);
+			}
+		}
 		if(hidden != null) {
 			//Roll
 			// Ta inn input fra checkboxes -> Liste med Boolean
 			//trille terninger
+			int i = 0;
 			for (Dice d : dice) {
 				//if unchecked
-				d.RollDice();
+				if(hold.get(i) != true) {
+					d.RollDice();
+				}
+				i++;
 			}
 			request.getSession().setAttribute("numbers", dice);
 			counter++;
