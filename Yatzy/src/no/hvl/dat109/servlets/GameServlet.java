@@ -26,6 +26,7 @@ public class GameServlet extends HttpServlet {
 	private List<Dice> dice;
 	private List<Boolean> hold;
 	private List<Integer> roundPoints;
+	private List<String> info;
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
@@ -51,6 +52,7 @@ public class GameServlet extends HttpServlet {
 		hold.add(false);
 		roundPoints = new ArrayList<>();
 		roundPoints.add(0);
+		info = new ArrayList<>();
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -68,6 +70,7 @@ public class GameServlet extends HttpServlet {
 		Player p = (Player) request.getSession().getAttribute("loggedIn");
 		players.put(p.getName(), position.getPlayer());
 		request.getSession().setAttribute("counter", counter);
+		request.getSession().setAttribute("info", info);
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
 	}
 
