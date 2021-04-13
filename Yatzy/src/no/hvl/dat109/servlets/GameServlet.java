@@ -25,6 +25,7 @@ public class GameServlet extends HttpServlet {
     
 	private List<Dice> dice;
 	private List<Boolean> hold;
+	private List<Integer> roundPoints;
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
@@ -48,6 +49,8 @@ public class GameServlet extends HttpServlet {
 		hold.add(false);
 		hold.add(false);
 		hold.add(false);
+		roundPoints = new ArrayList<>();
+		roundPoints.add(0);
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -78,7 +81,7 @@ public class GameServlet extends HttpServlet {
 			}
 		}
 		if(hidden != null) {
-			//Roll
+			//Roll knappen
 			// Ta inn input fra checkboxes -> Liste med Boolean
 			//trille terninger
 			int i = 0;
@@ -92,10 +95,12 @@ public class GameServlet extends HttpServlet {
 			request.getSession().setAttribute("numbers", dice);
 			counter++;
 		} else {
-			//Done
+			//Done knappen
 			counter = 0;
 			//Regne ut poengsum ved hjelp av helper metode
-			//Helper.calculatePoints(position.getRow(), dice);
+			roundPoints.set(0,Helper.calculatePoints(position.getRow(), dice));
+			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
+			position.setRow(position.getRow() + 1);
 		}
 		for(int c = 0; c <= 4; c++) {
 			hold.set(c, false);
