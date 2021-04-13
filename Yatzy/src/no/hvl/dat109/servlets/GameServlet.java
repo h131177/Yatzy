@@ -70,9 +70,9 @@ public class GameServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Hidden parameter slik at det blir mulig å sjekke om det er roll eller done knappen som trykkes
 		String hidden = request.getParameter("roll");
-		for(int c = 0; c < 5; c++) {
+		for(int c = 0; c <= 4; c++) {
 			String b = request.getParameter("check" + c);
-			if(b == "true") {
+			if(b != null) {
 				hold.set(c, true);
 			}
 		}
@@ -95,6 +95,9 @@ public class GameServlet extends HttpServlet {
 			counter = 0;
 			//Regne ut poengsum ved hjelp av helper metode
 			//Helper.calculatePoints(position.getRow(), dice);
+		}
+		for(int c = 0; c <= 4; c++) {
+			hold.set(c, false);
 		}
 		
 		response.sendRedirect("game");
