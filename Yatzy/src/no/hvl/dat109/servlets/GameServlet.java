@@ -64,6 +64,7 @@ public class GameServlet extends HttpServlet {
 		
 		Player p = (Player) request.getSession().getAttribute("loggedIn");
 		players.put(p.getName(), position.getPlayer());
+		request.getSession().setAttribute("counter", counter);
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
 	}
 
