@@ -34,4 +34,8 @@ public class Game {
 	public void addPoints(int row, List<Integer> list) {
 		points.set(row, list);
 	}
+	
+	public List<Integer> getList(int row) {
+		return points.get(row);
+	}
 }
