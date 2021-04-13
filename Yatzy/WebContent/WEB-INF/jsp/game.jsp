@@ -42,6 +42,7 @@
 		</tr>
 
 	</table>
+	<p>You have ${3-counter} rolls left!</p>
 	<br>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
