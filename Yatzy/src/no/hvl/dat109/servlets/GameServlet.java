@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.helper.Helper;
 import no.hvl.dat109.model.Dice;
+import no.hvl.dat109.model.Game;
 import no.hvl.dat109.model.Player;
 import no.hvl.dat109.model.Position;
 
@@ -23,6 +24,8 @@ import no.hvl.dat109.model.Position;
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
+	private Game game;
+	//private List<List<Integer>> points;
 	private List<Dice> dice;
 	private List<Boolean> hold;
 	private List<Integer> roundPoints;
@@ -69,7 +72,10 @@ public class GameServlet extends HttpServlet {
 		
 		Player p = (Player) request.getSession().getAttribute("loggedIn");
 		players.put(p.getName(), position.getPlayer());
+		game = (Game) request.getSession().getAttribute("game");
+		request.getSession().setAttribute("points", game.getPoints());
 		request.getSession().setAttribute("counter", counter);
+		info = Helper.getInfo();
 		request.getSession().setAttribute("info", info);
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
 	}
@@ -102,6 +108,9 @@ public class GameServlet extends HttpServlet {
 			counter = 0;
 			//Regne ut poengsum ved hjelp av helper metode
 			roundPoints.set(0,Helper.calculatePoints(position.getRow(), dice));
+			game.addPoints(position.getRow(), roundPoints);
+			request.getSession().setAttribute("game", game);
+			request.getSession().setAttribute("points", game.getPoints());
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
 			position.setRow(position.getRow() + 1);
 		}
