@@ -30,5 +30,8 @@ public class Game {
 	public void addPlayer(Player player) {
 		players.add(player);
 	}
-	
+	//Legger til poeng for alle spillere den runden
+	public void addPoints(int row, List<Integer> list) {
+		points.set(row, list);
+	}
 }
