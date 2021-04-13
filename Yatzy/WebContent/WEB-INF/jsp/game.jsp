@@ -30,14 +30,14 @@
 		<tr>
 			<th bgcolor="#cccccc">Check</th>
 			<form method="post" action="game">
-			<td><input type="checkbox" id="check0" name="check0" value="0"></td>
-			<td><input type="checkbox" id="check1" name="check1" value="1"></td>
-			<td><input type="checkbox" id="check2" name="check2" value="2"></td>
-			<td><input type="checkbox" id="check3" name="check3" value="3"></td>
-			<td><input type="checkbox" id="check4" name="check4" value="4"></td>
-			<td><button type="submit"
-					class="pure-button pure-button-primary">Roll</button> <input
-				type="hidden" value="roll" + name="roll"></td>
+				<td><input type="checkbox" id="check0" name="check0" value="0"></td>
+				<td><input type="checkbox" id="check1" name="check1" value="1"></td>
+				<td><input type="checkbox" id="check2" name="check2" value="2"></td>
+				<td><input type="checkbox" id="check3" name="check3" value="3"></td>
+				<td><input type="checkbox" id="check4" name="check4" value="4"></td>
+				<td><button type="submit"
+						class="pure-button pure-button-primary">Roll</button> <input
+					type="hidden" value="roll" + name="roll"></td>
 			</form>
 		</tr>
 
@@ -49,34 +49,16 @@
 			<th>Player</th>
 			<th>Kjetil</th>
 		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Enere</td>
-			<td>5</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Enere</td>
-			<td>5</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Enere</td>
-			<td>5</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Enere</td>
-			<td>5</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Enere</td>
-			<td>5</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Enere</td>
-			<td>5</td>
-		</tr>
-		<tr bgcolor="#ffffff">
-			<td align="center">Sum</td>
-			<td>5</td>
-		</tr>
+		<c:forEach items="${info}" var="i">
+			<tr bgcolor="#ffffff">
+				<td align="center">${i}</td>
+				<!--<c:forEach items="${points}" var="o" varStatus="loop">-->
+				<c:forEach items="${points}" var="inn" varStatus="innerloop">
+				<td>${inn[innerloop.index]}</td>
+				</c:forEach>
+				<!--</c:forEach>-->
+			</tr>
+		</c:forEach>
 	</table>
 </body>
 </html>
