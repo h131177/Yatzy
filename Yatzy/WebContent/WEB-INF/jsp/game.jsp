@@ -52,11 +52,11 @@
 		<c:forEach items="${info}" var="i">
 			<tr bgcolor="#ffffff">
 				<td align="center">${i}</td>
-				<!--<c:forEach items="${points}" var="o" varStatus="loop">-->
-				<c:forEach items="${points}" var="inn" varStatus="innerloop">
-				<td>${inn[innerloop.index]}</td>
+				<c:forEach items="${points}" var="o" varStatus="loop">
+				<c:forEach items="${points[loop.index]}" var="inn" varStatus="innerloop">
+				<td>${inn}</td>
 				</c:forEach>
-				<!--</c:forEach>-->
+				</c:forEach>
 			</tr>
 		</c:forEach>
 	</table>
