@@ -28,7 +28,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th bgcolor="#cccccc">Check</th>
+			<th bgcolor="#cccccc">Hold</th>
 			<form method="post" action="game">
 				<td><input type="checkbox" id="check0" name="check0" value="0"></td>
 				<td><input type="checkbox" id="check1" name="check1" value="1"></td>
