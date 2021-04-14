@@ -15,7 +15,7 @@ public class Helper {
 				result += d.getValue();
 			}
 		}
-		return n;
+		return result;
 	}
 	
 	public static List<String> getInfo() {
