@@ -1,5 +1,6 @@
 package no.hvl.dat109.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Klasse for å lagre opplysninger om spillet
@@ -32,7 +33,13 @@ public class Game {
 	}
 	//Legger til poeng for alle spillere den runden
 	public void addPoints(int row, List<Integer> list) {
-		points.set(row, list);
+		List<Integer> numbersList = new ArrayList<>();
+		int j = 0;
+		for (Integer i : list) {
+			numbersList.add(list.get(j));
+			j++;
+		}
+		points.set(row, numbersList);
 	}
 	
 	public List<Integer> getList(int row) {
