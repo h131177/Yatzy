@@ -49,13 +49,13 @@
 			<th>Player</th>
 			<th>Kjetil</th>
 		</tr>
-		<c:forEach items="${info}" var="i">
+		<c:forEach items="${info}" var="i" varStatus="k">
 			<tr bgcolor="#ffffff">
 				<td align="center">${i}</td>
-				<c:forEach items="${points}" var="o" varStatus="loop">
-				<c:forEach items="${points[loop.index]}" var="inn" varStatus="innerloop">
-				<td>${inn}</td>
-				</c:forEach>
+				<c:forEach items="${points[k.index]}" var="o" varStatus="loop">
+				<!--<c:forEach items="${points[loop.index]}" var="inn" varStatus="innerloop">-->
+				<td>${points[loop.index]}</td>
+				<!--</c:forEach>-->
 				</c:forEach>
 			</tr>
 		</c:forEach>
