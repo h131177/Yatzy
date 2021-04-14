@@ -52,9 +52,9 @@
 		<c:forEach items="${info}" var="i" varStatus="k">
 			<tr bgcolor="#ffffff">
 				<td align="center">${i}</td>
-				<c:forEach items="${points[k.index]}" var="o" varStatus="loop">
+				<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
 				<!--<c:forEach items="${points[loop.index]}" var="inn" varStatus="innerloop">-->
-				<td>${points[loop.index]}</td>
+				<td>${points[k.index][loop.index]}</td>
 				<!--</c:forEach>-->
 				</c:forEach>
 			</tr>
