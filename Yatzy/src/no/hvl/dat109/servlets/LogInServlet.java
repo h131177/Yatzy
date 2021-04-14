@@ -26,9 +26,9 @@ public class LogInServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Player> players = new ArrayList<>();
 		List<List<Integer>> points = new ArrayList<>();
-		for(int i = 0; i < 5; i++) {
+		for(int i = 0; i < 6; i++) {
 			List<Integer> l = new ArrayList<>();
-			l.add(2);
+			l.add(0);
 			points.add(l);
 		}
 		game = new Game(players, points);
