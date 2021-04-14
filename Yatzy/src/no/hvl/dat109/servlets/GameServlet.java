@@ -107,12 +107,14 @@ public class GameServlet extends HttpServlet {
 			//Done knappen
 			counter = 0;
 			//Regne ut poengsum ved hjelp av helper metode
-			roundPoints.set(0,Helper.calculatePoints(position.getRow(), dice));
+			roundPoints.set(0,Helper.calculatePoints(position.getRow() + 1, dice));
 			game.addPoints(position.getRow(), roundPoints);
 			request.getSession().setAttribute("game", game);
 			request.getSession().setAttribute("points", game.getPoints());
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
 			position.setRow(position.getRow() + 1);
+			System.out.println(game.getList(0).get(0));
+			System.out.println(game.getList(1).get(0));
 		}
 		for(int c = 0; c <= 4; c++) {
 			hold.set(c, false);
