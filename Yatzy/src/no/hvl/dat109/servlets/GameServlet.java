@@ -30,6 +30,7 @@ public class GameServlet extends HttpServlet {
 	private List<Boolean> hold;
 	private List<Integer> roundPoints;
 	private List<String> info;
+	private List<Integer> sum;
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
@@ -56,6 +57,8 @@ public class GameServlet extends HttpServlet {
 		roundPoints = new ArrayList<>();
 		roundPoints.add(0);
 		info = new ArrayList<>();
+		sum = new ArrayList<>();
+		sum.add(0);
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -109,6 +112,8 @@ public class GameServlet extends HttpServlet {
 			//Regne ut poengsum ved hjelp av helper metode
 			roundPoints.set(0,Helper.calculatePoints(position.getRow() + 1, dice));
 			game.addPoints(position.getRow(), roundPoints);
+			sum.set(0, sum.get(0) + roundPoints.get(0));
+			request.getSession().setAttribute("sum", sum);
 			request.getSession().setAttribute("game", game);
 			request.getSession().setAttribute("points", game.getPoints());
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
