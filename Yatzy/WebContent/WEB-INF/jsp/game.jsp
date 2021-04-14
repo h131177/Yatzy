@@ -50,11 +50,18 @@
 			<th>Kjetil</th>
 		</tr>
 		<c:forEach items="${info}" var="i" varStatus="k">
-		<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
+			<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
 			<tr bgcolor="#ffffff">
 				<td align="center">${i}</td>
 				<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
-					<td>${points[k.index][loop.index]}</td>
+					<c:choose>
+						<c:when test="${k.index == 6}">
+							<td>${sum[0]}</td>
+						</c:when>
+						<c:otherwise>
+							<td>${points[k.index][loop.index]}</td>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</tr>
 		</c:forEach>
