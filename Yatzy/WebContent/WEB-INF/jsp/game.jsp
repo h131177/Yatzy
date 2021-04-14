@@ -50,6 +50,7 @@
 			<th>Kjetil</th>
 		</tr>
 		<c:forEach items="${info}" var="i" varStatus="k">
+		<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
 			<tr bgcolor="#ffffff">
 				<td align="center">${i}</td>
 				<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
