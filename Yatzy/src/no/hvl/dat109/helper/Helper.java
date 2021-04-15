@@ -27,6 +27,15 @@ public class Helper {
 		infoList.add("Fives");
 		infoList.add("Sixes");
 		infoList.add("Sum");
+		infoList.add("Bonus");
+		infoList.add("Three of a kind");
+		infoList.add("Four of a kind");
+		infoList.add("Full house");
+		infoList.add("Small straight");
+		infoList.add("Large straight");
+		infoList.add("Chance");
+		infoList.add("YATZY");
+		infoList.add("TOTAL SCORE");
 		return infoList;
 	}
 }
