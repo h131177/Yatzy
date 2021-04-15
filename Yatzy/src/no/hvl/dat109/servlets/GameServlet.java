@@ -31,6 +31,7 @@ public class GameServlet extends HttpServlet {
 	private List<Integer> roundPoints;
 	private List<String> info;
 	private List<Integer> sum;
+	private List<Integer> bonus;
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
@@ -59,6 +60,8 @@ public class GameServlet extends HttpServlet {
 		info = new ArrayList<>();
 		sum = new ArrayList<>();
 		sum.add(0);
+		bonus = new ArrayList<>();
+		bonus.add(0);
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -122,6 +125,13 @@ public class GameServlet extends HttpServlet {
 				position.setRow(position.getRow() + 1);
 				//Etter å ha oppdatert må du legge inn verdier fra sum raden i game
 				game.addPoints(position.getRow(), sum);
+				//Sjekke om ein kan få bonus
+				if(sum.get(0) >= 63) {
+					bonus.set(0, 50);
+				}
+				game.addPoints(position.getRow(), bonus);
+				position.setRow(position.getRow() + 1);
+				request.getSession().setAttribute("bonus", bonus);
 			}
 			position.setRow(position.getRow() + 1);
 		}
