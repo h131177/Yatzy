@@ -117,6 +117,12 @@ public class GameServlet extends HttpServlet {
 			request.getSession().setAttribute("game", game);
 			request.getSession().setAttribute("points", game.getPoints());
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
+			//Øke med totalt 2, slik at ein hopper over å spille ein runde i sum raden
+			if(position.getRow() == 5) {
+				position.setRow(position.getRow() + 1);
+				//Etter å ha oppdatert må du legge inn verdier fra sum raden i game
+				game.addPoints(position.getRow(), sum);
+			}
 			position.setRow(position.getRow() + 1);
 		}
 		for(int c = 0; c <= 4; c++) {
