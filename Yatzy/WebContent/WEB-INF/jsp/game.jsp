@@ -14,6 +14,9 @@
 	<h1>Yatzy</h1>
 
 	<h3>Player logged in: ${loggedIn.username}</h3>
+	<form method="get" action="game">
+		<button type="submit" class="pure-button pure-button-primary">Update</button>
+	</form>
 
 	<table class="pure-table">
 		<tr>
@@ -47,7 +50,7 @@
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
 			<th>Player</th>
-			<th>Kjetil</th>
+			<th>${loggedIn.username}</th>
 		</tr>
 		<c:forEach items="${info}" var="i" varStatus="k">
 			<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
