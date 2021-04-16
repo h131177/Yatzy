@@ -20,7 +20,7 @@ input[type="checkbox"] {margin: 20px;}
 	<form method="get" action="game">
 		<button type="submit" class="pure-button pure-button-primary">Update</button>
 	</form>
-	<img alt="1" src="dice1.PNG" width="50px" height="50px">
+
 	<table class="pure-table">
 		<tr>
 			<th bgcolor="#cccccc">Dice</th>
