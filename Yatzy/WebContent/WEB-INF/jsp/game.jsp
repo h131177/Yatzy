@@ -9,6 +9,9 @@
 <link rel="stylesheet"
 	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 <title>Yatzy Game</title>
+<style>
+input[type="checkbox"] {margin: 20px;}
+</style>
 </head>
 <body>
 	<h1>Yatzy</h1>
@@ -17,12 +20,12 @@
 	<form method="get" action="game">
 		<button type="submit" class="pure-button pure-button-primary">Update</button>
 	</form>
-
+	<img alt="1" src="dice1.PNG" width="50px" height="50px">
 	<table class="pure-table">
 		<tr>
 			<th bgcolor="#cccccc">Dice</th>
 			<c:forEach items="${numbers}" var="n">
-				<td>${n.value}</td>
+				<td>${n.value} <img alt="${n.value}" src="dice${n.value}.PNG" width="50px" height="50px"></td>
 			</c:forEach>
 			<td>
 				<form method="post" action="game">
@@ -45,7 +48,7 @@
 		</tr>
 
 	</table>
-	<p>You have ${3-counter} rolls left!</p>
+	<p>You have ${3-counter} <img alt="${3-counter}" src="dice${3-counter}.PNG" width="25px" height="25px"> rolls left!</p>
 	<br>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
