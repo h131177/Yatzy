@@ -18,6 +18,27 @@ public class Helper {
 		return result;
 	}
 	
+	public static int checkThree(List<Dice> list) {
+		int result = 0;
+		int counter = 0;
+		int mostfrequent = 6;
+		
+			for(int i = 1; i <= 6; i++) {
+				for (Dice d:list) {
+					if (d.getValue() == (6 - i)) {
+					mostfrequent = d.getValue();
+					counter ++;
+					}
+				}
+			if (counter >= 3) {
+				return (mostfrequent * 3); 
+			}
+			
+		}
+	
+		return result;
+	}
+	
 	public static List<String> getInfo() {
 		List<String> infoList = new ArrayList<>();
 		infoList.add("Ones");
@@ -28,6 +49,8 @@ public class Helper {
 		infoList.add("Sixes");
 		infoList.add("Sum");
 		infoList.add("Bonus");
+		infoList.add("One pair");
+		infoList.add("Two pairs");
 		infoList.add("Three of a kind");
 		infoList.add("Four of a kind");
 		infoList.add("Full house");
