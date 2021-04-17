@@ -10,7 +10,9 @@
 	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 <title>Yatzy Game</title>
 <style>
-input[type="checkbox"] {margin: 20px;}
+input[type="checkbox"] {
+	margin: 20px;
+}
 </style>
 </head>
 <body>
@@ -25,7 +27,8 @@ input[type="checkbox"] {margin: 20px;}
 		<tr>
 			<th bgcolor="#cccccc">Dice</th>
 			<c:forEach items="${numbers}" var="n">
-				<td>${n.value} <img alt="${n.value}" src="dice${n.value}.PNG" width="50px" height="50px"></td>
+				<td>${n.value}<img alt="${n.value}" src="dice${n.value}.PNG"
+					width="50px" height="50px"></td>
 			</c:forEach>
 			<td>
 				<form method="post" action="game">
@@ -48,7 +51,11 @@ input[type="checkbox"] {margin: 20px;}
 		</tr>
 
 	</table>
-	<p>You have ${3-counter} <img alt="${3-counter}" src="dice${3-counter}.PNG" width="25px" height="25px"> rolls left!</p>
+	<p>
+		You have ${3-counter} <img alt="${3-counter}"
+			src="dice${3-counter}.PNG" width="25px" height="25px"> rolls
+		left!
+	</p>
 	<br>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
@@ -57,18 +64,26 @@ input[type="checkbox"] {margin: 20px;}
 		</tr>
 		<c:forEach items="${info}" var="i" varStatus="k">
 			<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
-			<tr bgcolor="#ffffff">
-				<td align="center">${i}</td>
-				<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
-					<c:choose>
-						<c:when test="${k.index == 6}">
-							<td>${sum[0]}</td>
-						</c:when>
-						<c:otherwise>
-							<td>${points[k.index][loop.index]}</td>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
+			<c:choose>
+				<c:when test="${k.index == row}">
+					<tr bgcolor="#aaffaa">
+				</c:when>
+				<c:otherwise>
+					<tr bgcolor="#ffffff">
+				</c:otherwise>
+			</c:choose>
+
+			<td align="center">${i}</td>
+			<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
+				<c:choose>
+					<c:when test="${k.index == 6}">
+						<td>${sum[0]}</td>
+					</c:when>
+					<c:otherwise>
+						<td>${points[k.index][loop.index]}</td>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 			</tr>
 		</c:forEach>
 	</table>

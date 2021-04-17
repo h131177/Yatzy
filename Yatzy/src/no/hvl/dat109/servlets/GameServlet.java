@@ -83,6 +83,7 @@ public class GameServlet extends HttpServlet {
 		request.getSession().setAttribute("counter", counter);
 		info = Helper.getInfo();
 		request.getSession().setAttribute("info", info);
+		request.getSession().setAttribute("row", position.getRow());
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
 	}
 
