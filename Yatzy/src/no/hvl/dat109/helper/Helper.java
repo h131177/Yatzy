@@ -8,10 +8,28 @@ import no.hvl.dat109.model.Dice;
 // Klasse med statiske hjelpemetoder for å regne ut poengsummen
 public class Helper {
 	
+	//Metode som alltid blir kalt i Servlet, den finner riktig metode basert på hvilken rad det er
+	public static void calculate(int row, List<Dice> list) {
+		if(row <= 6 || row == 16) {
+			calculatePoints(row, list);
+		} else {
+			//TODO
+			switch(row) {
+			case 9:
+				calculatePoints(1, list);
+				break;
+			}
+		}
+	}
+	
 	public static int calculatePoints(int n, List<Dice> list) {
 		int result = 0;
 		for (Dice d : list) {
 			if(d.getValue() == n) {
+				result += d.getValue();
+			}
+			//Sjanse, alle tall legges sammen
+			if(n == 16) {
 				result += d.getValue();
 			}
 		}
@@ -38,6 +56,8 @@ public class Helper {
 	
 		return result;
 	}
+	
+	
 	
 	public static List<String> getInfo() {
 		List<String> infoList = new ArrayList<>();
