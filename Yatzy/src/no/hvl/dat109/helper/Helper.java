@@ -1,6 +1,7 @@
 package no.hvl.dat109.helper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import no.hvl.dat109.model.Dice;
@@ -57,7 +58,25 @@ public class Helper {
 		return result;
 	}
 	
-	
+	//Sjekker både liten og stor straight
+	public static int checkStraight(int n, List<Dice> list) {
+		int result = 15;
+		//Collections.sort(list, (d1, d2) -> Integer.compare(d1.getValue(), d1.getValue()));
+		Collections.sort(list, (d1, d2) -> Integer.valueOf(d1.getValue()).compareTo(Integer.valueOf(d2.getValue())));
+		int i = 1;
+		if(n == 2) {
+			result = 20;
+			i++;
+		}
+		for (Dice d : list) {
+			System.out.println(d.getValue());
+			if(d.getValue() != i) {
+				return 0;
+			}
+			i++;
+		}
+		return result;
+	}
 	
 	public static List<String> getInfo() {
 		List<String> infoList = new ArrayList<>();
