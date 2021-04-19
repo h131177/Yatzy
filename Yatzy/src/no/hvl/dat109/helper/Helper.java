@@ -10,38 +10,40 @@ import no.hvl.dat109.model.Dice;
 public class Helper {
 	
 	//Metode som alltid blir kalt i Servlet, den finner riktig metode basert på hvilken rad det er
-	public static void calculate(int row, List<Dice> list) {
+	public static int calculate(int row, List<Dice> list) {
+		int result = 0;
 		if(row <= 6 || row == 16) {
-			calculatePoints(row, list);
+			result = calculatePoints(row, list);
 		} else {
 			//TODO
 			switch(row) {
 			case 9:
-				checkEquals(2, 1, list);
+				result = checkEquals(2, 1, list);
 				break;
 			case 10:
-				checkEquals(2, 2, list);
+				result = checkEquals(2, 2, list);
 				break;
 			case 11:
-				checkEquals(3, 1, list);
+				result = checkEquals(3, 1, list);
 				break;
 			case 12:
-				checkEquals(4, 1, list);
+				result = checkEquals(4, 1, list);
 				break;
 			case 13:
-				checkHouse(2, 2, list);
+				result = checkHouse(2, 2, list);
 				break;
 			case 14:
-				checkStraight(1, list);
+				result = checkStraight(1, list);
 				break;
 			case 15:
-				checkStraight(2, list);
+				result = checkStraight(2, list);
 				break;
 			case 17:
-				checkEquals(5, 1, list);
+				result = checkEquals(5, 1, list);
 				break;
 			}
 		}
+		return result;
 	}
 	
 	public static int calculatePoints(int n, List<Dice> list) {
