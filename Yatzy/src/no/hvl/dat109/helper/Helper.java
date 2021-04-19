@@ -17,19 +17,19 @@ public class Helper {
 			//TODO
 			switch(row) {
 			case 9:
-				calculatePoints(1, list);
+				checkEquals(2, 1, list);
 				break;
 			case 10:
-				calculatePoints(1, list);
+				checkEquals(2, 2, list);
 				break;
 			case 11:
-				calculatePoints(1, list);
+				checkEquals(3, 1, list);
 				break;
 			case 12:
-				calculatePoints(1, list);
+				checkEquals(4, 1, list);
 				break;
 			case 13:
-				calculatePoints(1, list);
+				checkHouse(2, 2, list);
 				break;
 			case 14:
 				checkStraight(1, list);
@@ -38,7 +38,7 @@ public class Helper {
 				checkStraight(2, list);
 				break;
 			case 17:
-				calculatePoints(1, list);
+				checkEquals(5, 1, list);
 				break;
 			}
 		}
