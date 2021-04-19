@@ -116,7 +116,9 @@ public class GameServlet extends HttpServlet {
 			//Regne ut poengsum ved hjelp av helper metode
 			roundPoints.set(0,Helper.calculate(position.getRow() + 1, dice));
 			game.addPoints(position.getRow(), roundPoints);
-			sum.set(0, sum.get(0) + roundPoints.get(0));
+			if(position.getRow() <= 6) {
+				sum.set(0, sum.get(0) + roundPoints.get(0));
+			}
 			request.getSession().setAttribute("sum", sum);
 			request.getSession().setAttribute("game", game);
 			request.getSession().setAttribute("points", game.getPoints());
