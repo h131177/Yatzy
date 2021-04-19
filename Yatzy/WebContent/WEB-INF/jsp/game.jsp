@@ -79,6 +79,9 @@ input[type="checkbox"] {
 					<c:when test="${k.index == 6}">
 						<td>${sum[0]}</td>
 					</c:when>
+					<c:when test="${k.index == 17}">
+						<td>${total[0]}</td>
+					</c:when>
 					<c:otherwise>
 						<td>${points[k.index][loop.index]}</td>
 					</c:otherwise>

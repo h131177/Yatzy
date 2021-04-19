@@ -32,6 +32,7 @@ public class GameServlet extends HttpServlet {
 	private List<String> info;
 	private List<Integer> sum;
 	private List<Integer> bonus;
+	private List<Integer> totalScore;
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
@@ -62,6 +63,8 @@ public class GameServlet extends HttpServlet {
 		sum.add(0);
 		bonus = new ArrayList<>();
 		bonus.add(0);
+		totalScore = new ArrayList<>();
+		totalScore.add(0);
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -119,7 +122,9 @@ public class GameServlet extends HttpServlet {
 			if(position.getRow() <= 6) {
 				sum.set(0, sum.get(0) + roundPoints.get(0));
 			}
+			totalScore.set(0, totalScore.get(0) + roundPoints.get(0));
 			request.getSession().setAttribute("sum", sum);
+			request.getSession().setAttribute("total", totalScore);
 			request.getSession().setAttribute("game", game);
 			request.getSession().setAttribute("points", game.getPoints());
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
