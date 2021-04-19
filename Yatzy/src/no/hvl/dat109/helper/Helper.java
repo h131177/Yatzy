@@ -75,11 +75,52 @@ public class Helper {
 			if(counter == n) {
 				pairs++;
 				if(pairs == p) {
-					result = i*n;
 					check = false;
+				}
+				result += i*n;
+			}
+			counter = 0;
+		}
+		//Spesialtilfelle: Dersom du berre finner et par
+		if(check) {
+			result = 0;
+		}
+		return result;
+	}
+	
+	// Metode som sjekker hus
+	// n = antall like du skal ha, p = antall forskjellige (par)
+	public static int checkHouse(int n, int p, List<Dice> list) {
+		int result = 0;
+		int counter = 0;
+		int pairs = 0;
+		boolean check = true;
+		boolean check2 = true;
+		
+		for (int i = 6; i > 0 && (check || check2); i--) {
+			for (Dice d : list) {
+				if(d.getValue() == i) {
+					counter++;
+				}
+			}
+			if(counter == n) {
+				pairs++;
+				if(pairs == p) {
+					result += i*n;
+					check = false;
+				}
+			} else if(counter == n + 1) {
+				pairs++;
+				if(pairs == p) {
+					result += i*n;
+					check2 = false;
 				}
 			}
 			counter = 0;
+		}
+		//Spesialtilfelle: Dersom du berre finner et par
+		if(check || check2) {
+			result = 0;
 		}
 		return result;
 	}
