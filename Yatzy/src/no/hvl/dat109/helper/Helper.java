@@ -106,17 +106,11 @@ public class Helper {
 				}
 			}
 			if(counter == n) {
-				pairs++;
-				if(pairs == p) {
-					result += i*n;
-					check = false;
-				}
+				result += i*n;
+				check = false;
 			} else if(counter == n + 1) {
-				pairs++;
-				if(pairs == p) {
-					result += i*n;
-					check2 = false;
-				}
+				result += i*(n+1);
+				check2 = false;
 			}
 			counter = 0;
 		}
