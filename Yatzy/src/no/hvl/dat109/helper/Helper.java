@@ -19,6 +19,27 @@ public class Helper {
 			case 9:
 				calculatePoints(1, list);
 				break;
+			case 10:
+				calculatePoints(1, list);
+				break;
+			case 11:
+				calculatePoints(1, list);
+				break;
+			case 12:
+				calculatePoints(1, list);
+				break;
+			case 13:
+				calculatePoints(1, list);
+				break;
+			case 14:
+				checkStraight(1, list);
+				break;
+			case 15:
+				checkStraight(2, list);
+				break;
+			case 17:
+				calculatePoints(1, list);
+				break;
 			}
 		}
 	}
@@ -33,6 +54,32 @@ public class Helper {
 			if(n == 16) {
 				result += d.getValue();
 			}
+		}
+		return result;
+	}
+	
+	// Metode som sjekker et par, to par, 3 like, 4 like og yatzy
+	// n = antall like du skal ha, p = antall forskjellige (par)
+	public static int checkEquals(int n, int p, List<Dice> list) {
+		int result = 0;
+		int counter = 0;
+		int pairs = 0;
+		boolean check = true;
+		
+		for (int i = 6; i > 0 && check; i--) {
+			for (Dice d : list) {
+				if(d.getValue() == i) {
+					counter++;
+				}
+			}
+			if(counter == n) {
+				pairs++;
+				if(pairs == p) {
+					result = i*n;
+					check = false;
+				}
+			}
+			counter = 0;
 		}
 		return result;
 	}
