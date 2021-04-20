@@ -29,6 +29,8 @@ public class RegisterServlet extends HttpServlet {
 	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Lagre listen over brukere for seinare bruk i andre servlets
+		request.getSession().setAttribute("users", users);
 		request.getRequestDispatcher("WEB-INF/jsp/register.jsp").forward(request, response);
 	}
 

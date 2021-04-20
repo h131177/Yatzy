@@ -33,6 +33,8 @@ public class LogInServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Henter listen over brukere
 		users = (List<Player>) request.getSession().getAttribute("users");
+		player = new Player("Nokia", "Nokia", "Kjetil");
+		users.add(player);
 		List<Player> players = new ArrayList<>();
 		List<List<Integer>> points = new ArrayList<>();
 		for(int i = 0; i < 18; i++) {
@@ -45,13 +47,22 @@ public class LogInServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		player = new Player("Nokia", "Nokia", "Kjetil");
-		users.add(player);
+		String username = request.getParameter("username");
+		player = findPlayer(username);
 		game.addPlayer(player);
 		request.getSession().setAttribute("users", users);
 		request.getSession().setAttribute("loggedIn", player);
 		request.getSession().setAttribute("game", game);
 		response.sendRedirect("game");
+	}
+	
+	public Player findPlayer(String user) {
+		for(Player p : users) {
+			if(user.equals(p.getUsername())) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 }
