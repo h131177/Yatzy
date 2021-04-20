@@ -23,6 +23,10 @@
           <br>
           <button type="submit" class="pure-button pure-button-primary">Create user</button>
         </fieldset>
-      </form>
+</form>
+<p>Already have a user?</p>
+<form method="login" action="login">
+		<button type="submit" class="pure-button pure-button-primary">Login</button>
+</form>
 </body>
 </html>
