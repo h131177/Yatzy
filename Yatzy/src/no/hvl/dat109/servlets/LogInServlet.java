@@ -20,10 +20,19 @@ import no.hvl.dat109.model.Player;
 public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private List<Player> users;
+	private List<Game> games;
 	private Player player;
 	private Game game;
+	
+	@Override
+	public void init() throws ServletException {
+		
+	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Henter listen over brukere
+		users = (List<Player>) request.getSession().getAttribute("users");
 		List<Player> players = new ArrayList<>();
 		List<List<Integer>> points = new ArrayList<>();
 		for(int i = 0; i < 18; i++) {
@@ -37,7 +46,9 @@ public class LogInServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		player = new Player("Nokia", "Nokia", "Kjetil");
+		users.add(player);
 		game.addPlayer(player);
+		request.getSession().setAttribute("users", users);
 		request.getSession().setAttribute("loggedIn", player);
 		request.getSession().setAttribute("game", game);
 		response.sendRedirect("game");
