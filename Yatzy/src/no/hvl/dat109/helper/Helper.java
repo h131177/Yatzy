@@ -15,7 +15,6 @@ public class Helper {
 		if(row <= 6 || row == 16) {
 			result = calculatePoints(row, list);
 		} else {
-			//TODO
 			switch(row) {
 			case 9:
 				result = checkEquals(2, 1, list);
@@ -74,7 +73,7 @@ public class Helper {
 					counter++;
 				}
 			}
-			if(counter == n) {
+			if(counter >= n) {
 				pairs++;
 				if(pairs == p) {
 					check = false;
