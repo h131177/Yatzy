@@ -41,6 +41,7 @@ public class LogInServlet extends HttpServlet {
 		for(int i = 0; i < 18; i++) {
 			List<Integer> l = new ArrayList<>();
 			l.add(0);
+			l.add(0);
 			points.add(l);
 		}
 		game = new Game(players, points);
