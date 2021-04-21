@@ -60,14 +60,22 @@ input[type="checkbox"] {
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
 			<th>Player</th>
-			<c:forEach items="${game.players}" var="p">
-			<th>${p.username}</th>
+			<c:forEach items="${game.players}" var="p" varStatus="pi">
+			<c:choose>
+				<c:when test="${pi.index == position.player}">
+					<th bgcolor="#aaffaa">
+				</c:when>
+				<c:otherwise>
+					<th bgcolor="#ffffff">
+				</c:otherwise>
+			</c:choose>
+			${p.username}</th>
 			</c:forEach>
 		</tr>
 		<c:forEach items="${info}" var="i" varStatus="k">
 			<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
 			<c:choose>
-				<c:when test="${k.index == row}">
+				<c:when test="${k.index == position.row}">
 					<tr bgcolor="#aaffaa">
 				</c:when>
 				<c:otherwise>
