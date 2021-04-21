@@ -152,7 +152,6 @@ public class Helper {
 			i++;
 		}
 		for (Dice d : list) {
-			System.out.println(d.getValue());
 			if(d.getValue() != i) {
 				return 0;
 			}
