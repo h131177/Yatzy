@@ -122,29 +122,26 @@ public class GameServlet extends HttpServlet {
 			if(position.getRow() <= 6) {
 				sum.set(0, sum.get(0) + roundPoints.get(0));
 			}
-			totalScore.set(0, totalScore.get(0) + roundPoints.get(0));
-			request.getSession().setAttribute("sum", sum);
-			request.getSession().setAttribute("total", totalScore);
-			request.getSession().setAttribute("game", game);
-			request.getSession().setAttribute("points", game.getPoints());
+			
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
 			//Øke med totalt 2, slik at ein hopper over å spille ein runde i sum raden
 			if(position.getRow() == 5) {
 				position.setRow(position.getRow() + 1);
 				//Etter å ha oppdatert må du legge inn verdier fra sum raden i game
 				game.addPoints(position.getRow(), sum);
-				//Sjekke om ein kan få bonus
-				System.out.println(sum.get(0));
 				if(sum.get(0) >= 63) {
-					System.out.println("BONUS!!!!");
 					bonus.set(0, 50);
 				}
 				position.setRow(position.getRow() + 1);
 				game.addPoints(position.getRow(), bonus);
-				
-				request.getSession().setAttribute("bonus", bonus);
 			}
 			position.setRow(position.getRow() + 1);
+			
+			totalScore.set(0, totalScore.get(0) + roundPoints.get(0) + bonus.get(0));
+			request.getSession().setAttribute("sum", sum);
+			request.getSession().setAttribute("total", totalScore);
+			request.getSession().setAttribute("game", game);
+			request.getSession().setAttribute("points", game.getPoints());
 		}
 		for(int c = 0; c <= 4; c++) {
 			hold.set(c, false);
