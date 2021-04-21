@@ -60,7 +60,9 @@ input[type="checkbox"] {
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
 			<th>Player</th>
-			<th>${loggedIn.username}</th>
+			<c:forEach items="${game.players}" var="p">
+			<th>${p.username}</th>
+			</c:forEach>
 		</tr>
 		<c:forEach items="${info}" var="i" varStatus="k">
 			<!-- Legge inn if og else for å sjekke om det er spesial rader, som sum, bonus osv -->
@@ -77,10 +79,10 @@ input[type="checkbox"] {
 			<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
 				<c:choose>
 					<c:when test="${k.index == 6}">
-						<td>${sum[0]}</td>
+						<td>${sum[loop.index]}</td>
 					</c:when>
 					<c:when test="${k.index == 17}">
-						<td>${total[0]}</td>
+						<td>${total[loop.index]}</td>
 					</c:when>
 					<c:otherwise>
 						<td>${points[k.index][loop.index]}</td>
