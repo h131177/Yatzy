@@ -36,6 +36,7 @@ public class GameServlet extends HttpServlet {
 	private Position position;
 	private HashMap<String, Integer> players;
 	private int counter;
+	private int count = 0;
 	
 	@Override
 	public void init() throws ServletException {
@@ -51,18 +52,16 @@ public class GameServlet extends HttpServlet {
 		dice.add(d4);
 		dice.add(d5);
 		hold = new ArrayList<>();
+		hold.add(false);
+		hold.add(false);
+		hold.add(false);
+		hold.add(false);
+		hold.add(false);
 		roundPoints = new ArrayList<>();
 		info = new ArrayList<>();
 		sum = new ArrayList<>();
 		bonus = new ArrayList<>();
 		totalScore = new ArrayList<>();
-		for (int i = 0; i < game.getPlayers().size(); i++) {
-			hold.add(false);
-			roundPoints.add(0);
-			sum.add(0);
-			bonus.add(0);
-			totalScore.add(0);
-		}
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
@@ -80,6 +79,17 @@ public class GameServlet extends HttpServlet {
 		Player p = (Player) request.getSession().getAttribute("loggedIn");
 		players.put(p.getName(), position.getPlayer());
 		game = (Game) request.getSession().getAttribute("game");
+		//Skal berre kjøres første gangen
+		if(count == 0) {
+			for (int i = 0; i < game.getPlayers().size(); i++) {
+				roundPoints.add(0);
+				sum.add(0);
+				bonus.add(0);
+				totalScore.add(0);
+			}
+		}
+		count++;
+		
 		request.getSession().setAttribute("points", game.getPoints());
 		request.getSession().setAttribute("counter", counter);
 		info = Helper.getInfo();
@@ -115,27 +125,38 @@ public class GameServlet extends HttpServlet {
 			//Done knappen
 			counter = 0;
 			//Regne ut poengsum ved hjelp av helper metode
-			roundPoints.set(0,Helper.calculate(position.getRow() + 1, dice));
+			roundPoints.set(position.getPlayer(),Helper.calculate(position.getRow() + 1, dice));
 			game.addPoints(position.getRow(), roundPoints);
 			if(position.getRow() <= 6) {
-				sum.set(0, sum.get(0) + roundPoints.get(0));
+				sum.set(position.getPlayer(), sum.get(position.getPlayer()) + roundPoints.get(position.getPlayer()));
 			}
 			
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
-			//Øke med totalt 2, slik at ein hopper over å spille ein runde i sum raden
-			if(position.getRow() == 5) {
-				position.setRow(position.getRow() + 1);
-				//Etter å ha oppdatert må du legge inn verdier fra sum raden i game
-				game.addPoints(position.getRow(), sum);
-				if(sum.get(0) >= 63) {
-					bonus.set(0, 50);
+			if(position.getPlayer() != (game.getPlayers().size() - 1)) {
+				position.setPlayer(position.getPlayer() + 1);
+			} else {
+				position.setPlayer(0);
+				//Øke med totalt 2, slik at ein hopper over å spille runder i sum og bonus raden
+				if(position.getRow() == 5) {
+					position.setRow(position.getRow() + 1);
+					//Etter å ha oppdatert må du legge inn verdier fra sum raden i game
+					game.addPoints(position.getRow(), sum);
+					for(int i = 0; i < bonus.size(); i++) {
+						if(sum.get(position.getPlayer()) >= 63) {
+							bonus.set(position.getPlayer(), 50);
+						}
+						position.setPlayer(position.getPlayer() + 1);
+					}
+					position.setRow(position.getRow() + 1);
+					game.addPoints(position.getRow(), bonus);
 				}
 				position.setRow(position.getRow() + 1);
-				game.addPoints(position.getRow(), bonus);
+				position.setPlayer(0);
 			}
-			position.setRow(position.getRow() + 1);
 			
-			totalScore.set(0, totalScore.get(0) + roundPoints.get(0) + bonus.get(0));
+			for(int i = 0; i < totalScore.size(); i++) {
+				totalScore.set(i, totalScore.get(i) + roundPoints.get(i) + bonus.get(i));
+			}
 			request.getSession().setAttribute("sum", sum);
 			request.getSession().setAttribute("total", totalScore);
 			request.getSession().setAttribute("game", game);

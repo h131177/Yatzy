@@ -35,6 +35,7 @@ public class LogInServlet extends HttpServlet {
 		users = (List<Player>) request.getSession().getAttribute("users");
 		player = new Player("Nokia", "Nokia", "Kjetil");
 		users.add(player);
+
 		List<Player> players = new ArrayList<>();
 		List<List<Integer>> points = new ArrayList<>();
 		for(int i = 0; i < 18; i++) {
@@ -43,6 +44,7 @@ public class LogInServlet extends HttpServlet {
 			points.add(l);
 		}
 		game = new Game(players, points);
+		game.addPlayer(player);
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 
