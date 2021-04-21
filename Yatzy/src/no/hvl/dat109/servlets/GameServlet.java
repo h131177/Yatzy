@@ -51,20 +51,18 @@ public class GameServlet extends HttpServlet {
 		dice.add(d4);
 		dice.add(d5);
 		hold = new ArrayList<>();
-		hold.add(false);
-		hold.add(false);
-		hold.add(false);
-		hold.add(false);
-		hold.add(false);
 		roundPoints = new ArrayList<>();
-		roundPoints.add(0);
 		info = new ArrayList<>();
 		sum = new ArrayList<>();
-		sum.add(0);
 		bonus = new ArrayList<>();
-		bonus.add(0);
 		totalScore = new ArrayList<>();
-		totalScore.add(0);
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			hold.add(false);
+			roundPoints.add(0);
+			sum.add(0);
+			bonus.add(0);
+			totalScore.add(0);
+		}
 		position = new Position(0, 0);
 		counter = 0;
 		players = new HashMap<String, Integer>();
