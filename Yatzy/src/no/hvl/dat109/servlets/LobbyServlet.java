@@ -27,7 +27,30 @@ public class LobbyServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("lobby");
+		//Henter verdi for å vite hvilken knapp som blei trykka
+		String button = request.getParameter("hidden");
+		switch (button) {
+			case "create":
+				String create = "You have created a new game! Please wait for people to join.";
+				request.getSession().setAttribute("create", create);
+				break;
+			case "start":
+				
+				break;
+			case "join":
+				String gameNr = request.getParameter("games");
+				String joined = "You have joined " + gameNr + "! Please wait for the game to start";
+				request.getSession().setAttribute("joined", joined);
+				break;
+			case "view":
+				//Sjå på gamle spill som er ferdig
+				break;
+		}
+		if(button.equals("start")) {
+			response.sendRedirect("game");
+		} else {
+			response.sendRedirect("lobby");
+		}
 	}
 
 }
