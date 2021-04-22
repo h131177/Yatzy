@@ -57,15 +57,21 @@ public class LogInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		player = findPlayer(username);
-		//Sjekker om ein logger inn med "admin" brukeren eller ein ny registrert bruker
-		//Siden "admin" brukeren allerede er lagt til i game, skal den ikkje legges til på nytt
-		if(!player.getUsername().equals("Nokia")) {
-			game.addPlayer(player);
-		}
 		
-		request.getSession().setAttribute("loggedIn", player);
-		request.getSession().setAttribute("game", game);
-		response.sendRedirect("game");
+		if(player != null) {
+			//Sjekker om ein logger inn med "admin" brukeren eller ein ny registrert bruker
+			//Siden "admin" brukeren allerede er lagt til i game, skal den ikkje legges til på nytt
+			if(!player.getUsername().equals("Nokia")) {
+				game.addPlayer(player);
+			}
+			request.getSession().setAttribute("loggedIn", player);
+			request.getSession().setAttribute("game", game);
+			response.sendRedirect("game");
+		} else {
+			String errorMessage = "Invalid username or password";
+			request.getSession().setAttribute("error", errorMessage);
+			response.sendRedirect("login");
+		}
 	}
 	
 	public Player findPlayer(String user) {
