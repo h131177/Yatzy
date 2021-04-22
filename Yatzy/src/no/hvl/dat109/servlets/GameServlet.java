@@ -131,6 +131,13 @@ public class GameServlet extends HttpServlet {
 				sum.set(position.getPlayer(), sum.get(position.getPlayer()) + roundPoints.get(position.getPlayer()));
 			}
 			
+			System.out.println("TESTING:");
+			System.out.println("Total Before: " + totalScore.get(position.getPlayer()));
+			System.out.println("roundPoints Before: " + roundPoints.get(position.getPlayer()));
+			System.out.println("bonus Before: " + bonus.get(position.getPlayer()));
+			totalScore.set(position.getPlayer(), totalScore.get(position.getPlayer()) + roundPoints.get(position.getPlayer()));
+			System.out.println("Total After: " + totalScore.get(position.getPlayer()));
+			
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
 			if(position.getPlayer() != (game.getPlayers().size() - 1)) {
 				position.setPlayer(position.getPlayer() + 1);
@@ -144,6 +151,7 @@ public class GameServlet extends HttpServlet {
 					for(int i = 0; i < bonus.size(); i++) {
 						if(sum.get(position.getPlayer()) >= 63) {
 							bonus.set(position.getPlayer(), 50);
+							totalScore.set(i, totalScore.get(i) + bonus.get(i));
 						}
 						position.setPlayer(position.getPlayer() + 1);
 					}
@@ -154,9 +162,6 @@ public class GameServlet extends HttpServlet {
 				position.setPlayer(0);
 			}
 			
-			for(int i = 0; i < totalScore.size(); i++) {
-				totalScore.set(i, totalScore.get(i) + roundPoints.get(i) + bonus.get(i));
-			}
 			request.getSession().setAttribute("sum", sum);
 			request.getSession().setAttribute("total", totalScore);
 			request.getSession().setAttribute("game", game);
