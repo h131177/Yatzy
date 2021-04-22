@@ -17,35 +17,38 @@
 		<font color="green">${create}</font>
 	</p>
 	<form method="post" action="lobby">
+		<input type="hidden" value="create" name="create">
 		<button type="submit" class="pure-button pure-button-primary">Create
 			game</button>
 	</form>
 	<br>
 	<form method="post" action="lobby">
+		<input type="hidden" value="start" name="start">
 		<button type="submit" class="pure-button pure-button-primary">Start
 			game</button>
 	</form>
 	<br>
-	
+
 	<p>
 		<font color="green">${joined}</font>
 	</p>
 	<form method="post" action="lobby">
-		<label for="games">Choose a game:</label> <select name="games" id="games">
+		<input type="hidden" value="join" name="join"> <label
+			for="games">Choose a game:</label> <select name="games" id="games">
 			<option value="game1">Game 1</option>
 			<option value="game2">Game 2</option>
-		</select>
-		<br>
+		</select> <br>
 		<button type="submit" class="pure-button pure-button-primary">Join
 			game</button>
 	</form>
 	<br>
 	<form method="post" action="lobby">
-		<label for="oldgames">Choose a game:</label> <select name="oldgames" id="oldgames">
+		<input type="hidden" value="view" name="view"> <label
+			for="oldgames">Choose a game:</label> <select name="oldgames"
+			id="oldgames">
 			<option value="oldgame1">Game 1</option>
 			<option value="oldgame2">Game 2</option>
-		</select>
-		<br>
+		</select> <br>
 		<button type="submit" class="pure-button pure-button-primary">View
 			game</button>
 	</form>
