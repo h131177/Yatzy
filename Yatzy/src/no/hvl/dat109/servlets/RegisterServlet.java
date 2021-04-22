@@ -25,12 +25,13 @@ public class RegisterServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		users = new ArrayList<>();
+		
 	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Lagre listen over brukere for seinare bruk i andre servlets
-		request.getSession().setAttribute("users", users);
+		//Henter listen over brukere
+		users = (List<Player>) request.getSession().getAttribute("users");
+		
 		request.getRequestDispatcher("WEB-INF/jsp/register.jsp").forward(request, response);
 	}
 

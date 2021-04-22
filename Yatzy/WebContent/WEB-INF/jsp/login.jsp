@@ -28,5 +28,8 @@
 			</div>
 		</fieldset>
 	</form>
+	<p>
+<a href="register">Register user</a>
+</p>
 </body>
 </html>
