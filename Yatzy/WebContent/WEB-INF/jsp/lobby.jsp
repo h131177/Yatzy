@@ -12,6 +12,7 @@
 </head>
 <body>
 	<h1>Lobby</h1>
+	<h3>Player logged in: ${loggedIn.username}</h3>
 	<p>
 		<font color="green">${create}</font>
 	</p>
