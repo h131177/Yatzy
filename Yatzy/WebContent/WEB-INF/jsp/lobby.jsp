@@ -12,8 +12,9 @@
 </head>
 <body>
 	<h1>Lobby</h1>
-	<!-- Create game button
-- Start game button -->
+	<p>
+		<font color="green">${create}</font>
+	</p>
 	<form method="post" action="lobby">
 		<button type="submit" class="pure-button pure-button-primary">Create
 			game</button>
@@ -24,9 +25,10 @@
 			game</button>
 	</form>
 	<br>
-	<!-- Join game dropdown list and button
-- View your games dropdown list and button
-- Log out button/link -->
+	
+	<p>
+		<font color="green">${joined}</font>
+	</p>
 	<form method="post" action="lobby">
 		<label for="games">Choose a game:</label> <select name="games" id="games">
 			<option value="game1">Game 1</option>

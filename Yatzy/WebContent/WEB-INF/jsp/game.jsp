@@ -46,7 +46,7 @@ input[type="checkbox"] {
 				<td><input type="checkbox" id="check4" name="check4" value="4"></td>
 				<td><button type="submit"
 						class="pure-button pure-button-primary">Roll</button> <input
-					type="hidden" value="roll" + name="roll"></td>
+					type="hidden" value="roll" name="roll"></td>
 			</form>
 		</tr>
 
