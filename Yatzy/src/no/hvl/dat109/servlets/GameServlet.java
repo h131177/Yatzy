@@ -130,13 +130,8 @@ public class GameServlet extends HttpServlet {
 			if(position.getRow() <= 6) {
 				sum.set(position.getPlayer(), sum.get(position.getPlayer()) + roundPoints.get(position.getPlayer()));
 			}
-			
-			System.out.println("TESTING:");
-			System.out.println("Total Before: " + totalScore.get(position.getPlayer()));
-			System.out.println("roundPoints Before: " + roundPoints.get(position.getPlayer()));
-			System.out.println("bonus Before: " + bonus.get(position.getPlayer()));
+			//Regner ut totalscore
 			totalScore.set(position.getPlayer(), totalScore.get(position.getPlayer()) + roundPoints.get(position.getPlayer()));
-			System.out.println("Total After: " + totalScore.get(position.getPlayer()));
 			
 			//Ved fleire spillere må ein også sjekke at alle spillere er ferdig med runden
 			if(position.getPlayer() != (game.getPlayers().size() - 1)) {
