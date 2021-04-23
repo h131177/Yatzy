@@ -10,6 +10,7 @@ public class Game {
 	private List<Player> players;
 	// Liste med lister med poeng for alle spillere i hver runde (Kunne muligens brukt todimensjonal tabell)
 	private List<List<Integer>> points;
+	private Player host;
 	private boolean started;
 	private boolean finished;
 	
@@ -30,6 +31,14 @@ public class Game {
 	public void setPoints(List<List<Integer>> points) {
 		this.points = points;
 	}
+	public Player getHost() {
+		return host;
+	}
+
+	public void setHost(Player host) {
+		this.host = host;
+	}
+
 	public boolean isStarted() {
 		return started;
 	}
