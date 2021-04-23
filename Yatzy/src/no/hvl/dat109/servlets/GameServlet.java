@@ -34,7 +34,7 @@ public class GameServlet extends HttpServlet {
 	private List<Integer> bonus;
 	private List<Integer> totalScore;
 	private Position position;
-	private HashMap<String, Integer> players;
+	//private HashMap<String, Integer> players;
 	private int counter;
 	private int count = 0;
 	
@@ -64,7 +64,7 @@ public class GameServlet extends HttpServlet {
 		totalScore = new ArrayList<>();
 		position = new Position(0, 0);
 		counter = 0;
-		players = new HashMap<String, Integer>();
+		//players = new HashMap<String, Integer>();
 		
 	}
  
@@ -77,7 +77,7 @@ public class GameServlet extends HttpServlet {
 		}
 		
 		Player p = (Player) request.getSession().getAttribute("loggedIn");
-		players.put(p.getName(), position.getPlayer());
+		//players.put(p.getName(), position.getPlayer());
 		game = (Game) request.getSession().getAttribute("game");
 		//Skal berre kjøres første gangen
 		if(count == 0) {
