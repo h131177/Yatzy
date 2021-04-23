@@ -21,7 +21,6 @@ public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private List<Player> users;
-	private List<Game> games;
 	private Player player;
 	private Game game;
 	private int count = 0;
