@@ -74,12 +74,22 @@ public class LobbyServlet extends HttpServlet {
 				String gameNr = request.getParameter("games");
 				String joined = "You have joined " + gameNr + "! Please wait for the game to start";
 				request.getSession().setAttribute("joined", joined);
+				game.addPlayer(player);
+				request.getSession().setAttribute("game", game);
 				break;
 			case "view":
-				//Sjå på gamle spill som er ferdig
+				//TODO fikse lobby.jsp slik at det blir returnert id
+				int viewGame = Integer.parseInt(request.getParameter("oldgames"));
+				for (Game g : games) {
+					if(g.getId() == viewGame) {
+						request.getSession().setAttribute("game", g);
+						break;
+					}
+				}
+				//TODO fikse game.jsp slik at knapper ikkje vises om spillet er ferdig
 				break;
 		}
-		if(button.equals("start")) {
+		if(button.equals("start") || button.equals("view")) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");
