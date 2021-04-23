@@ -25,6 +25,10 @@ public class LobbyServlet extends HttpServlet {
 	private List<Player> users;
 	private List<Game> games;
 	private YatzySystem system;
+	private Game game;
+	private Player player;
+	List<Player> players;
+	List<List<Integer>> points;
 
 	public void init(ServletConfig config) throws ServletException {
 		games = new ArrayList<>();
@@ -35,6 +39,7 @@ public class LobbyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Henter listen over brukere
 		users = (List<Player>) request.getSession().getAttribute("users");
+		player = (Player) request.getSession().getAttribute("loggedIn");
 		request.getSession().setAttribute("games", games);
 		request.getRequestDispatcher("WEB-INF/jsp/lobby.jsp").forward(request, response);
 	}
@@ -47,9 +52,23 @@ public class LobbyServlet extends HttpServlet {
 			case "create":
 				String create = "You have created a new game! Please wait for people to join.";
 				request.getSession().setAttribute("create", create);
+				players = new ArrayList<>();
+				players.add(player);
+				points = new ArrayList<>();
+				game = new Game(users, points, player);
+				games.add(game);
+				request.getSession().setAttribute("game", game);
 				break;
 			case "start":
-				
+				for(int i = 0; i < 18; i++) {
+					List<Integer> l = new ArrayList<>();
+					for(int j = 0; j < game.getPlayers().size(); j++) {
+						l.add(0);
+					}
+					points.add(l);
+				}
+				game.setStarted(true);
+				request.getSession().setAttribute("game", game);
 				break;
 			case "join":
 				String gameNr = request.getParameter("games");
