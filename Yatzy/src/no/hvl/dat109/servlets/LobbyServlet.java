@@ -60,15 +60,21 @@ public class LobbyServlet extends HttpServlet {
 				request.getSession().setAttribute("game", game);
 				break;
 			case "start":
-				for(int i = 0; i < 18; i++) {
-					List<Integer> l = new ArrayList<>();
-					for(int j = 0; j < game.getPlayers().size(); j++) {
-						l.add(0);
+				if(game != null) {
+					for(int i = 0; i < 18; i++) {
+						List<Integer> l = new ArrayList<>();
+						for(int j = 0; j < game.getPlayers().size(); j++) {
+							l.add(0);
+						}
+						points.add(l);
 					}
-					points.add(l);
+					game.setStarted(true);
+					request.getSession().setAttribute("game", game);
+				} else {
+					String start = "You need to create a new game first!";
+					request.getSession().setAttribute("start", start);
 				}
-				game.setStarted(true);
-				request.getSession().setAttribute("game", game);
+				
 				break;
 			case "join":
 				String gameNr = request.getParameter("games");
@@ -89,7 +95,7 @@ public class LobbyServlet extends HttpServlet {
 				//TODO fikse game.jsp slik at knapper ikkje vises om spillet er ferdig
 				break;
 		}
-		if(button.equals("start") || button.equals("view")) {
+		if(button.equals("start") && game != null || button.equals("view")) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");

@@ -22,6 +22,9 @@
 			game</button>
 	</form>
 	<br>
+	<p>
+		<font color="red">${start}</font>
+	</p>
 	<form method="post" action="lobby">
 		<input type="hidden" value="start" name="hidden">
 		<button type="submit" class="pure-button pure-button-primary">Start
