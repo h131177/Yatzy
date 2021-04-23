@@ -38,8 +38,13 @@
 	<form method="post" action="lobby">
 		<input type="hidden" value="join" name="hidden"> <label
 			for="games">Choose a game:</label> <select name="games" id="games">
-			<option value="game1">Game 1</option>
-			<option value="game2">Game 2</option>
+			<c:forEach items="${games}" var="g">
+			<c:choose>
+				<c:when test="${g.started == false && g.finished == false}">
+					<option value="${g.id}">Game ${g.id}</option>
+				</c:when>
+			</c:choose>
+			</c:forEach>
 		</select> <br>
 		<button type="submit" class="pure-button pure-button-primary">Join
 			game</button>
@@ -49,8 +54,13 @@
 		<input type="hidden" value="view" name="hidden"> <label
 			for="oldgames">Choose a game:</label> <select name="oldgames"
 			id="oldgames">
-			<option value="oldgame1">Game 1</option>
-			<option value="oldgame2">Game 2</option>
+			<c:forEach items="${games}" var="g">
+			<c:choose>
+				<c:when test="${g.players.contains(loggedIn) && g.finished == true}">
+					<option value="${g.id}">Game ${g.id}</option>
+				</c:when>
+			</c:choose>
+			</c:forEach>
 		</select> <br>
 		<button type="submit" class="pure-button pure-button-primary">View
 			game</button>
