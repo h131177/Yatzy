@@ -55,7 +55,7 @@ public class LobbyServlet extends HttpServlet {
 				players = new ArrayList<>();
 				players.add(player);
 				points = new ArrayList<>();
-				game = new Game(users, points, player);
+				game = new Game(1,users, points, player);
 				games.add(game);
 				request.getSession().setAttribute("game", game);
 				break;

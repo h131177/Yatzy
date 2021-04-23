@@ -6,6 +6,8 @@ import java.util.List;
 // Klasse for å lagre opplysninger om spillet
 // Tenker i utgangspunktet å ha terningene i Servleten
 public class Game {
+	
+	private int id;
 	// Liste med spillere som er med i spillet
 	private List<Player> players;
 	// Liste med lister med poeng for alle spillere i hver runde (Kunne muligens brukt todimensjonal tabell)
@@ -14,12 +16,21 @@ public class Game {
 	private boolean started;
 	private boolean finished;
 	
-	public Game(List<Player> players, List<List<Integer>> points, Player host) {
+	public Game(int id, List<Player> players, List<List<Integer>> points, Player host) {
+		this.id = id;
 		this.players = players;
 		this.points = points;
 		this.host = host;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public List<Player> getPlayers() {
 		return players;
 	}

@@ -48,7 +48,7 @@ public class LogInServlet extends HttpServlet {
 			l.add(0);
 			points.add(l);
 		}
-		game = new Game(players, points, player);
+		game = new Game(1,players, points, player);
 		game.addPlayer(player);
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
