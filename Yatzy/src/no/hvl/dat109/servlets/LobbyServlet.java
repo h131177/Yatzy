@@ -84,7 +84,6 @@ public class LobbyServlet extends HttpServlet {
 				request.getSession().setAttribute("game", game);
 				break;
 			case "view":
-				//TODO fikse lobby.jsp slik at det blir returnert id
 				int viewGame = Integer.parseInt(request.getParameter("oldgames"));
 				for (Game g : games) {
 					if(g.getId() == viewGame) {
@@ -92,7 +91,6 @@ public class LobbyServlet extends HttpServlet {
 						break;
 					}
 				}
-				//TODO fikse game.jsp slik at knapper ikkje vises om spillet er ferdig
 				break;
 		}
 		if(button.equals("start") && game != null || button.equals("view")) {
