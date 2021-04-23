@@ -22,7 +22,9 @@ input[type="checkbox"] {
 	<form method="get" action="game">
 		<button type="submit" class="pure-button pure-button-primary">Update</button>
 	</form>
-
+	<c:choose>
+		<c:when test="${game.finished == false}">
+					
 	<table class="pure-table">
 		<tr>
 			<th bgcolor="#cccccc">Dice</th>
@@ -56,6 +58,8 @@ input[type="checkbox"] {
 			src="dice${3-counter}.PNG" width="25px" height="25px"> rolls
 		left!
 	</p>
+	</c:when>
+	</c:choose>
 	<br>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
