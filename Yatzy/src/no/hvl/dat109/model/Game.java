@@ -14,9 +14,10 @@ public class Game {
 	private boolean started;
 	private boolean finished;
 	
-	public Game(List<Player> players, List<List<Integer>> points) {
+	public Game(List<Player> players, List<List<Integer>> points, Player host) {
 		this.players = players;
 		this.points = points;
+		this.host = host;
 	}
 	
 	public List<Player> getPlayers() {
