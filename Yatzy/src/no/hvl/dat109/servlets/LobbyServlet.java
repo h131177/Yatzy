@@ -40,6 +40,25 @@ public class LobbyServlet extends HttpServlet {
 		//Henter listen over brukere
 		users = (List<Player>) request.getSession().getAttribute("users");
 		player = (Player) request.getSession().getAttribute("loggedIn");
+		
+		//Algoritme for hente ferdigspilt spill:
+		//Hente inn game fra session
+		game = (Game) request.getSession().getAttribute("game");
+		//Sjekke om game i session er ferdig spilt
+		System.out.println("game sin id: " + game.getId());
+		if(game.isFinished()) {
+			//games = (List<Game>) request.getSession().getAttribute("games");
+			games.add(game);
+			//Finne posisjonen til game i games
+			for(int i = 0; i < games.size(); i++) {
+				if(game.getId() == games.get(i).getId()) {
+					//Erstatte game i games med game fra session
+					games.set(i, game);
+					System.out.println("SPILL FERDIG!");
+				}
+			}
+		}
+		
 		request.getSession().setAttribute("games", games);
 		request.getRequestDispatcher("WEB-INF/jsp/lobby.jsp").forward(request, response);
 	}

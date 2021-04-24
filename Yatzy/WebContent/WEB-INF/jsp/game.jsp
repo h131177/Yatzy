@@ -60,6 +60,12 @@ input[type="checkbox"] {
 	</p>
 	</c:when>
 	</c:choose>
+	<c:choose>
+		<c:when test="${position.row == 17}">
+		<p>The game is over, please go back to <a href="lobby">the Lobby</a>
+		</p>
+		</c:when>
+	</c:choose>
 	<br>
 	<table class="pure-table">
 		<tr bgcolor="#cccccc">
