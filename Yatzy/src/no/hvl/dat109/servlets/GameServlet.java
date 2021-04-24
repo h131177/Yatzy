@@ -91,6 +91,8 @@ public class GameServlet extends HttpServlet {
 		count++;
 		//Spillet er ferdig, må sette spillet til ferdig
 		if(position.getRow() == 17) {
+			//Legge inn totalscore i game sin points liste etter siste runde
+			game.addPoints(position.getRow(), totalScore);
 			game.setFinished(true);
 			System.out.println("GameServlet row 17");
 			request.getSession().setAttribute("game", game);
