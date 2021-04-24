@@ -66,6 +66,6 @@
 			game</button>
 	</form>
 	<br>
-	<a href="lobby">Log out</a>
+	<a href="logout">Log out</a>
 </body>
 </html>
