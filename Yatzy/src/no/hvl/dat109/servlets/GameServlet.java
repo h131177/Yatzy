@@ -57,13 +57,8 @@ public class GameServlet extends HttpServlet {
 		hold.add(false);
 		hold.add(false);
 		hold.add(false);
-		roundPoints = new ArrayList<>();
-		info = new ArrayList<>();
-		sum = new ArrayList<>();
-		bonus = new ArrayList<>();
-		totalScore = new ArrayList<>();
-		position = new Position(0, 0);
 		counter = 0;
+		position = new Position(0, 0);
 		//players = new HashMap<String, Integer>();
 		
 	}
@@ -80,7 +75,11 @@ public class GameServlet extends HttpServlet {
 		//players.put(p.getName(), position.getPlayer());
 		game = (Game) request.getSession().getAttribute("game");
 		//Skal berre kjøres første gangen
-		if(count == 0) {
+		if(count == 0 && !game.isFinished()) {
+			roundPoints = new ArrayList<>();
+			sum = new ArrayList<>();
+			bonus = new ArrayList<>();
+			totalScore = new ArrayList<>();
 			for (int i = 0; i < game.getPlayers().size(); i++) {
 				roundPoints.add(0);
 				sum.add(0);
@@ -95,6 +94,8 @@ public class GameServlet extends HttpServlet {
 			game.addPoints(position.getRow(), totalScore);
 			game.setFinished(true);
 			System.out.println("GameServlet row 17");
+			count = 0;
+			position = new Position(0, 0);
 			request.getSession().setAttribute("game", game);
 		}
 		

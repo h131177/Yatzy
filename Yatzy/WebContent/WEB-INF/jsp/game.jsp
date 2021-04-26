@@ -61,7 +61,7 @@ input[type="checkbox"] {
 	</c:when>
 	</c:choose>
 	<c:choose>
-		<c:when test="${position.row == 17}">
+		<c:when test="${game.finished}">
 		<p>The game is over, please go back to <a href="lobby">the Lobby</a>
 		</p>
 		</c:when>
@@ -96,11 +96,11 @@ input[type="checkbox"] {
 			<td align="center">${i}</td>
 			<c:forEach items="${points[k.index]}" var="out" varStatus="loop">
 				<c:choose>
-					<c:when test="${k.index == 6}">
+					<c:when test="${k.index == 6 && game.finished == false}">
 						<td>${sum[loop.index]}</td>
 					</c:when>
-					<c:when test="${k.index == 17}">
-						<td>${total[loop.index]}</td>
+					<c:when test="${k.index == 17 && game.finished == false}">
+						<td>${total[loop.index]}W</td>
 					</c:when>
 					<c:otherwise>
 						<td>${points[k.index][loop.index]}</td>
