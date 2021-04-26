@@ -40,16 +40,6 @@ public class LogInServlet extends HttpServlet {
 		}
 		count++;
 		
-		List<Player> players = new ArrayList<>();
-		List<List<Integer>> points = new ArrayList<>();
-		for(int i = 0; i < 18; i++) {
-			List<Integer> l = new ArrayList<>();
-			l.add(0);
-			l.add(0);
-			points.add(l);
-		}
-		game = new Game(1,players, points, player);
-		game.addPlayer(player);
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 
@@ -58,15 +48,8 @@ public class LogInServlet extends HttpServlet {
 		player = findPlayer(username);
 		
 		if(player != null) {
-			//Sjekker om ein logger inn med "admin" brukeren eller ein ny registrert bruker
-			//Siden "admin" brukeren allerede er lagt til i game, skal den ikkje legges til på nytt
-			if(!player.getUsername().equals("Nokia")) {
-				game.addPlayer(player);
-			}
-			game.setStarted(true);
 			request.getSession().setAttribute("loggedIn", player);
-			request.getSession().setAttribute("game", game);
-			response.sendRedirect("game");
+			response.sendRedirect("lobby");
 		} else {
 			String errorMessage = "Invalid username or password";
 			request.getSession().setAttribute("error", errorMessage);

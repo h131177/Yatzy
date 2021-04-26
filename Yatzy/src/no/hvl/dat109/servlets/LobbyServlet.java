@@ -44,17 +44,17 @@ public class LobbyServlet extends HttpServlet {
 		//Algoritme for hente ferdigspilt spill:
 		//Hente inn game fra session
 		game = (Game) request.getSession().getAttribute("game");
-		//Sjekke om game i session er ferdig spilt
-		System.out.println("game sin id: " + game.getId());
-		if(game.isFinished()) {
-			//games = (List<Game>) request.getSession().getAttribute("games");
-			games.add(game);
-			//Finne posisjonen til game i games
-			for(int i = 0; i < games.size(); i++) {
-				if(game.getId() == games.get(i).getId()) {
-					//Erstatte game i games med game fra session
-					games.set(i, game);
-					System.out.println("SPILL FERDIG!");
+		if(game != null) {
+			//Sjekke om game i session er ferdig spilt
+			System.out.println("game sin id: " + game.getId());
+			if(game.isFinished()) {
+				//Finne posisjonen til game i games
+				for(int i = 0; i < games.size(); i++) {
+					if(game.getId() == games.get(i).getId()) {
+						//Erstatte game i games med game fra session
+						games.set(i, game);
+						System.out.println("SPILL FERDIG!");
+					}
 				}
 			}
 		}
@@ -70,9 +70,8 @@ public class LobbyServlet extends HttpServlet {
 		switch (button) {
 			case "create":
 				String create = "";
-				if(game != null && !game.isStarted()) {
+				if(game == null) {
 					create = "You have created a new game! Please wait for people to join.";
-					
 					players = new ArrayList<>();
 					players.add(player);
 					points = new ArrayList<>();
@@ -118,7 +117,7 @@ public class LobbyServlet extends HttpServlet {
 				}
 				break;
 		}
-		if(button.equals("start") && game != null && !game.isStarted() || button.equals("view")) {
+		if(button.equals("start") && game != null || button.equals("view")) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");
