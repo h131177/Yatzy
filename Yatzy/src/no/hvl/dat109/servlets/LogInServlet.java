@@ -63,6 +63,7 @@ public class LogInServlet extends HttpServlet {
 			if(!player.getUsername().equals("Nokia")) {
 				game.addPlayer(player);
 			}
+			game.setStarted(true);
 			request.getSession().setAttribute("loggedIn", player);
 			request.getSession().setAttribute("game", game);
 			response.sendRedirect("game");

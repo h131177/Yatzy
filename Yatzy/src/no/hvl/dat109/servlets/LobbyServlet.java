@@ -69,17 +69,23 @@ public class LobbyServlet extends HttpServlet {
 		String button = request.getParameter("hidden");
 		switch (button) {
 			case "create":
-				String create = "You have created a new game! Please wait for people to join.";
+				String create = "";
+				if(game != null && !game.isStarted()) {
+					create = "You have created a new game! Please wait for people to join.";
+					
+					players = new ArrayList<>();
+					players.add(player);
+					points = new ArrayList<>();
+					game = new Game(games.size() + 1,users, points, player);
+					games.add(game);
+					request.getSession().setAttribute("game", game);
+				} else {
+					create = "You can't create a game when you already are in a game";
+				}
 				request.getSession().setAttribute("create", create);
-				players = new ArrayList<>();
-				players.add(player);
-				points = new ArrayList<>();
-				game = new Game(games.size() + 1,users, points, player);
-				games.add(game);
-				request.getSession().setAttribute("game", game);
 				break;
 			case "start":
-				if(game != null) {
+				if(game != null && !game.isStarted()) {
 					for(int i = 0; i < 18; i++) {
 						List<Integer> l = new ArrayList<>();
 						for(int j = 0; j < game.getPlayers().size(); j++) {
@@ -112,7 +118,7 @@ public class LobbyServlet extends HttpServlet {
 				}
 				break;
 		}
-		if(button.equals("start") && game != null || button.equals("view")) {
+		if(button.equals("start") && game != null && !game.isStarted() || button.equals("view")) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");
