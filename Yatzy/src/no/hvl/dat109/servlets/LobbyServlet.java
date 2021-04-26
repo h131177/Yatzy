@@ -106,10 +106,15 @@ public class LobbyServlet extends HttpServlet {
 				break;
 			case "join":
 				String gameNr = request.getParameter("games");
-				String joined = "You have joined " + gameNr + "! Please wait for the game to start";
+				String joined;
+				if(game != null) {
+					joined = "You have joined " + gameNr + "! Please wait for the game to start";
+					game.addPlayer(player);
+					request.getSession().setAttribute("game", game);
+				} else {
+					joined = "No game to join yet.";
+				}
 				request.getSession().setAttribute("joined", joined);
-				game.addPlayer(player);
-				request.getSession().setAttribute("game", game);
 				break;
 			case "view":
 				int viewGame = Integer.parseInt(request.getParameter("oldgames"));
