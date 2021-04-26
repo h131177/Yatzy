@@ -50,7 +50,6 @@ public class LobbyServlet extends HttpServlet {
 			if(game.isFinished()) {
 				//Finne posisjonen til game i games
 				for(int i = 0; i < games.size(); i++) {
-					System.out.println("Size games: " + games.size());
 					if(game.getId() == games.get(i).getId()) {
 						//Erstatte game i games med game fra session
 						games.set(i, game);

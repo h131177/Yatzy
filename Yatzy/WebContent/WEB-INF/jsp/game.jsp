@@ -100,7 +100,7 @@ input[type="checkbox"] {
 						<td>${sum[loop.index]}</td>
 					</c:when>
 					<c:when test="${k.index == 17 && game.finished == false}">
-						<td>${total[loop.index]}W</td>
+						<td>${total[loop.index]}</td>
 					</c:when>
 					<c:otherwise>
 						<td>${points[k.index][loop.index]}</td>

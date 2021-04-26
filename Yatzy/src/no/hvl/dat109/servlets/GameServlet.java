@@ -93,7 +93,6 @@ public class GameServlet extends HttpServlet {
 			//Legge inn totalscore i game sin points liste etter siste runde
 			game.addPoints(position.getRow(), totalScore);
 			game.setFinished(true);
-			System.out.println("GameServlet row 17");
 			count = 0;
 			position = new Position(0, 0);
 			request.getSession().setAttribute("game", game);
