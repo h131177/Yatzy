@@ -61,6 +61,9 @@ public class LobbyServlet extends HttpServlet {
 				}
 			}
 		}
+		//TODO lager lister til dropdown:
+		// join (Liste med alle games som ikkje er starta)
+		// view (Liste med alle games som er ferdige)
 		
 		request.getSession().setAttribute("games", games);
 		request.getRequestDispatcher("WEB-INF/jsp/lobby.jsp").forward(request, response);
@@ -68,6 +71,8 @@ public class LobbyServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//TODO Endre systemet for feilmeldinger til error og message
+		//error får rød farge, mens message fpr grønn
 		//Henter verdi for å vite hvilken knapp som blei trykka
 		String button = request.getParameter("hidden");
 		switch (button) {
