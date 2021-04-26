@@ -116,16 +116,19 @@ public class LobbyServlet extends HttpServlet {
 				request.getSession().setAttribute("joined", joined);
 				break;
 			case "view":
-				int viewGame = Integer.parseInt(request.getParameter("oldgames"));
-				for (Game g : games) {
-					if(g.getId() == viewGame) {
-						request.getSession().setAttribute("game", g);
-						break;
+				if(game != null) {
+					int viewGame = Integer.parseInt(request.getParameter("oldgames"));
+					for (Game g : games) {
+						if(g.getId() == viewGame) {
+							request.getSession().setAttribute("game", g);
+							break;
+						}
 					}
 				}
+				
 				break;
 		}
-		if(button.equals("start") && game != null && game.isStarted() || button.equals("view")) {
+		if(button.equals("start") && game != null && game.isStarted() || button.equals("view") && game != null) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");
