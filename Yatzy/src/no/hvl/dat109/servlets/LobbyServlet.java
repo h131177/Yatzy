@@ -54,6 +54,8 @@ public class LobbyServlet extends HttpServlet {
 						//Erstatte game i games med game fra session
 						games.set(i, game);
 						System.out.println("SPILL FERDIG!");
+						request.getSession().setAttribute("game", null);
+						game = null;
 					}
 				}
 			}
@@ -117,7 +119,7 @@ public class LobbyServlet extends HttpServlet {
 				}
 				break;
 		}
-		if(button.equals("start") && game != null || button.equals("view")) {
+		if(button.equals("start") && game != null && game.isStarted() || button.equals("view")) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");
