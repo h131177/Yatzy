@@ -86,8 +86,6 @@ public class LobbyServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO Endre systemet for feilmeldinger til error og message
-		//error får rød farge, mens message fpr grønn
 		//Henter verdi for å vite hvilken knapp som blei trykka
 		String button = request.getParameter("hidden");
 		switch (button) {
@@ -101,10 +99,14 @@ public class LobbyServlet extends HttpServlet {
 					game = new Game(games.size() + 1,users, points, player);
 					games.add(game);
 					request.getSession().setAttribute("game", game);
+					request.getSession().setAttribute("message", create);
+					request.getSession().setAttribute("error", "");
 				} else {
 					create = "You can't create a game when you already are in a game";
+					request.getSession().setAttribute("error", create);
+					request.getSession().setAttribute("message", "");
 				}
-				request.getSession().setAttribute("create", create);
+				
 				break;
 			case "start":
 				if(game != null && !game.isStarted()) {
@@ -119,7 +121,8 @@ public class LobbyServlet extends HttpServlet {
 					request.getSession().setAttribute("game", game);
 				} else {
 					String start = "You need to create a new game first!";
-					request.getSession().setAttribute("start", start);
+					request.getSession().setAttribute("error", start);
+					request.getSession().setAttribute("message", "");
 				}
 				
 				break;
@@ -130,10 +133,14 @@ public class LobbyServlet extends HttpServlet {
 					joined = "You have joined " + gameNr + "! Please wait for the game to start";
 					game.addPlayer(player);
 					request.getSession().setAttribute("game", game);
+					request.getSession().setAttribute("message", joined);
+					request.getSession().setAttribute("error", "");
 				} else {
 					joined = "No game to join yet.";
+					request.getSession().setAttribute("error", joined);
+					request.getSession().setAttribute("message", "");
 				}
-				request.getSession().setAttribute("joined", joined);
+				
 				break;
 			case "view":
 				if(viewGames.size() != 0) {
@@ -149,6 +156,8 @@ public class LobbyServlet extends HttpServlet {
 				break;
 		}
 		if(button.equals("start") && game != null && game.isStarted() || button.equals("view") && viewGames.size() != 0) {
+			request.getSession().setAttribute("error", "");
+			request.getSession().setAttribute("message", "");
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");

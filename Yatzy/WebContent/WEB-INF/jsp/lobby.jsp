@@ -14,7 +14,7 @@
 	<h1>Lobby</h1>
 	<h3>Player logged in: ${loggedIn.username}</h3>
 	<p>
-		<font color="green">${create}</font>
+		<font color="green">${message}</font>
 	</p>
 	<form method="post" action="lobby">
 		<input type="hidden" value="create" name="hidden">
@@ -23,7 +23,7 @@
 	</form>
 	<br>
 	<p>
-		<font color="red">${start}</font>
+		<font color="red">${error}</font>
 	</p>
 	<form method="post" action="lobby">
 		<input type="hidden" value="start" name="hidden">
@@ -32,9 +32,6 @@
 	</form>
 	<br>
 
-	<p>
-		<font color="green">${joined}</font>
-	</p>
 	<form method="post" action="lobby">
 		<input type="hidden" value="join" name="hidden"> <label
 			for="games">Choose a game:</label> <select name="games" id="games">
