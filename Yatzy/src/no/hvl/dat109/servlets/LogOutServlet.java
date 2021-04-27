@@ -21,6 +21,7 @@ public class LogOutServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO Nullstille 
+		request.getSession().setAttribute("loggedIn", null);
 		request.getSession().setAttribute("error", "");
 		request.getSession().setAttribute("message", "");
 		request.getRequestDispatcher("WEB-INF/jsp/logout.jsp").forward(request, response);
