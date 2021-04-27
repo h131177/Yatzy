@@ -116,19 +116,27 @@ public class LobbyServlet extends HttpServlet {
 				
 				break;
 			case "start":
+				String start = "";
 				if(game != null && !game.isStarted()) {
-					for(int i = 0; i < 18; i++) {
-						List<Integer> l = new ArrayList<>();
-						for(int j = 0; j < game.getPlayers().size(); j++) {
-							l.add(0);
+					if(game.getHost().equals(player)) {
+						for(int i = 0; i < 18; i++) {
+							List<Integer> l = new ArrayList<>();
+							for(int j = 0; j < game.getPlayers().size(); j++) {
+								l.add(0);
+							}
+							points.add(l);
 						}
-						points.add(l);
+						game.setStarted(true);
+						request.getSession().setAttribute("game", game);
+						request.getSession().setAttribute("newGame", null);
+					} else {
+						start = "You are not the host for this game, only the host can start the game.";
+						request.getSession().setAttribute("error", start);
+						request.getSession().setAttribute("message", "");
 					}
-					game.setStarted(true);
-					request.getSession().setAttribute("game", game);
-					request.getSession().setAttribute("newGame", null);
+					
 				} else {
-					String start = "You need to create a new game first!";
+					start = "You need to create a new game first!";
 					request.getSession().setAttribute("error", start);
 					request.getSession().setAttribute("message", "");
 				}
@@ -138,7 +146,7 @@ public class LobbyServlet extends HttpServlet {
 				String gameNr = request.getParameter("games");
 				String joined;
 				if(joinGames.size() != 0) {
-					joined = "You have joined " + gameNr + "! Please wait for the game to start";
+					joined = "You have joined game " + gameNr + "! Please wait for the game to start";
 					game.addPlayer(player);
 					request.getSession().setAttribute("message", joined);
 					request.getSession().setAttribute("error", "");
