@@ -86,8 +86,11 @@ public class GameServlet extends HttpServlet {
 				bonus.add(0);
 				totalScore.add(0);
 			}
+			count++;
+			request.getSession().setAttribute("sum", sum);
+			request.getSession().setAttribute("total", totalScore);
 		}
-		count++;
+		
 		//Spillet er ferdig, må sette spillet til ferdig
 		if(position.getRow() == 17) {
 			//Legge inn totalscore i game sin points liste etter siste runde
