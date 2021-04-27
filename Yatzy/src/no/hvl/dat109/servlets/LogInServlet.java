@@ -51,10 +51,12 @@ public class LogInServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
-		player = findPlayer(username);
+		String password = request.getParameter("password");
+		player = findPlayer(username, password);
 		
 		if(player != null) {
 			request.getSession().setAttribute("loggedIn", player);
+			request.getSession().setAttribute("error", "");
 			response.sendRedirect("lobby");
 		} else {
 			String errorMessage = "Invalid username or password";
@@ -63,10 +65,12 @@ public class LogInServlet extends HttpServlet {
 		}
 	}
 	
-	public Player findPlayer(String user) {
+	public Player findPlayer(String user, String password) {
 		for(Player p : users) {
 			if(user.equals(p.getUsername())) {
-				return p;
+				if(p.getPassword().equals(password)) {
+					return p;
+				}
 			}
 		}
 		return null;
