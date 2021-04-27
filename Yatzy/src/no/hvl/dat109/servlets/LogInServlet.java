@@ -39,7 +39,13 @@ public class LogInServlet extends HttpServlet {
 			request.getSession().setAttribute("users", users);
 		}
 		count++;
-		
+		//Sletter eventuelle feilmeldinger fra register siden
+		String referer = request.getHeader("Referer");
+		System.out.println(referer);
+		if(referer.equals("http://localhost:8080/yatzy/register")) {
+			request.getSession().setAttribute("message", "");
+			request.getSession().setAttribute("error", "");
+		}
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 

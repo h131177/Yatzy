@@ -24,6 +24,12 @@
           <button type="submit" class="pure-button pure-button-primary">Create user</button>
         </fieldset>
 </form>
+	<p>
+		<font color="green">${message}</font>
+	</p>
+	<p>
+		<font color="red">${error}</font>
+	</p>
 <p>Already have a user?</p>
 <form method="login" action="login">
 		<button type="submit" class="pure-button pure-button-primary">Login</button>
