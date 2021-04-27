@@ -46,6 +46,11 @@ public class LobbyServlet extends HttpServlet {
 		//Algoritme for hente ferdigspilt spill:
 		//Hente inn game fra session
 		game = (Game) request.getSession().getAttribute("game");
+		//Sjekker om du kjem fra visning av gammelt spill
+		String old = (String) request.getSession().getAttribute("old");
+		if(old != null) {
+			game = null;
+		}
 		if(game != null) {
 			//Sjekke om game i session er ferdig spilt
 			System.out.println("game sin id: " + game.getId());
@@ -63,6 +68,8 @@ public class LobbyServlet extends HttpServlet {
 				}
 			}
 		}
+		//Henter spillet som er opprettet
+		game = (Game) request.getSession().getAttribute("newGame");
 		// Lager lister til dropdown:
 		// join (Liste med alle games som ikkje er starta)
 		// view (Liste med alle games som brukeren har spilt ferdig)
@@ -98,7 +105,7 @@ public class LobbyServlet extends HttpServlet {
 					points = new ArrayList<>();
 					game = new Game(games.size() + 1,users, points, player);
 					games.add(game);
-					request.getSession().setAttribute("game", game);
+					request.getSession().setAttribute("newGame", game);
 					request.getSession().setAttribute("message", create);
 					request.getSession().setAttribute("error", "");
 				} else {
@@ -119,6 +126,7 @@ public class LobbyServlet extends HttpServlet {
 					}
 					game.setStarted(true);
 					request.getSession().setAttribute("game", game);
+					request.getSession().setAttribute("newGame", null);
 				} else {
 					String start = "You need to create a new game first!";
 					request.getSession().setAttribute("error", start);
@@ -132,7 +140,6 @@ public class LobbyServlet extends HttpServlet {
 				if(joinGames.size() != 0) {
 					joined = "You have joined " + gameNr + "! Please wait for the game to start";
 					game.addPlayer(player);
-					request.getSession().setAttribute("game", game);
 					request.getSession().setAttribute("message", joined);
 					request.getSession().setAttribute("error", "");
 				} else {

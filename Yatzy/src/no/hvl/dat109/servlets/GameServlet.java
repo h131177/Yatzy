@@ -96,6 +96,8 @@ public class GameServlet extends HttpServlet {
 			count = 0;
 			position = new Position(0, 0);
 			request.getSession().setAttribute("game", game);
+		} else if(game.isFinished()) {
+			request.getSession().setAttribute("old", "old");
 		}
 		
 		request.getSession().setAttribute("points", game.getPoints());
