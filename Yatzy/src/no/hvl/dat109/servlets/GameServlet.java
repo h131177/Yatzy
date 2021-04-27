@@ -25,7 +25,6 @@ public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private Game game;
-	//private List<List<Integer>> points;
 	private List<Dice> dice;
 	private List<Boolean> hold;
 	private List<Integer> roundPoints;
@@ -87,6 +86,8 @@ public class GameServlet extends HttpServlet {
 				totalScore.add(0);
 			}
 			count++;
+			info = Helper.getInfo();
+			request.getSession().setAttribute("info", info);
 			request.getSession().setAttribute("sum", sum);
 			request.getSession().setAttribute("total", totalScore);
 		}
@@ -105,8 +106,6 @@ public class GameServlet extends HttpServlet {
 		
 		request.getSession().setAttribute("points", game.getPoints());
 		request.getSession().setAttribute("counter", counter);
-		info = Helper.getInfo();
-		request.getSession().setAttribute("info", info);
 		request.getSession().setAttribute("position", position);
 		request.getRequestDispatcher("WEB-INF/jsp/game.jsp").forward(request, response);
 	}
