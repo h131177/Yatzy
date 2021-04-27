@@ -27,8 +27,10 @@ public class LobbyServlet extends HttpServlet {
 	private YatzySystem system;
 	private Game game;
 	private Player player;
-	List<Player> players;
-	List<List<Integer>> points;
+	private List<Player> players;
+	private List<List<Integer>> points;
+	private List<Game> joinGames;
+	private List<Game> viewGames;
 
 	public void init(ServletConfig config) throws ServletException {
 		games = new ArrayList<>();
@@ -61,9 +63,22 @@ public class LobbyServlet extends HttpServlet {
 				}
 			}
 		}
-		//TODO lager lister til dropdown:
+		// Lager lister til dropdown:
 		// join (Liste med alle games som ikkje er starta)
-		// view (Liste med alle games som er ferdige)
+		// view (Liste med alle games som brukeren har spilt ferdig)
+		if(games != null) {
+			joinGames = new ArrayList<>();
+			viewGames = new ArrayList<>();
+			for(Game g : games) {
+				if(!g.isStarted()) {
+					joinGames.add(g);
+				} else if(g.getPlayers().contains(player) && g.isFinished()) {
+					viewGames.add(g);
+				}
+			}
+			request.getSession().setAttribute("joinGames", joinGames);
+			request.getSession().setAttribute("viewGames", viewGames);
+		}
 		
 		request.getSession().setAttribute("games", games);
 		request.getRequestDispatcher("WEB-INF/jsp/lobby.jsp").forward(request, response);
@@ -111,7 +126,7 @@ public class LobbyServlet extends HttpServlet {
 			case "join":
 				String gameNr = request.getParameter("games");
 				String joined;
-				if(game != null) {
+				if(joinGames.size() != 0) {
 					joined = "You have joined " + gameNr + "! Please wait for the game to start";
 					game.addPlayer(player);
 					request.getSession().setAttribute("game", game);
@@ -121,7 +136,7 @@ public class LobbyServlet extends HttpServlet {
 				request.getSession().setAttribute("joined", joined);
 				break;
 			case "view":
-				if(game != null) {
+				if(viewGames.size() != 0) {
 					int viewGame = Integer.parseInt(request.getParameter("oldgames"));
 					for (Game g : games) {
 						if(g.getId() == viewGame) {
@@ -133,7 +148,7 @@ public class LobbyServlet extends HttpServlet {
 				
 				break;
 		}
-		if(button.equals("start") && game != null && game.isStarted() || button.equals("view") && game != null) {
+		if(button.equals("start") && game != null && game.isStarted() || button.equals("view") && viewGames.size() != 0) {
 			response.sendRedirect("game");
 		} else {
 			response.sendRedirect("lobby");
