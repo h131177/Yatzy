@@ -41,7 +41,6 @@ public class LogInServlet extends HttpServlet {
 		count++;
 		//Sletter eventuelle feilmeldinger fra register siden
 		String referer = request.getHeader("Referer");
-		System.out.println(referer);
 		if(referer.equals("http://localhost:8080/yatzy/register")) {
 			request.getSession().setAttribute("message", "");
 			request.getSession().setAttribute("error", "");
