@@ -144,7 +144,7 @@ public class LobbyServlet extends HttpServlet {
 				break;
 			case "join":
 				String gameNr = request.getParameter("games");
-				String joined;
+				String joined = "";
 				if(joinGames.size() != 0) {
 					joined = "You have joined game " + gameNr + "! Please wait for the game to start";
 					game.addPlayer(player);
@@ -166,6 +166,11 @@ public class LobbyServlet extends HttpServlet {
 							break;
 						}
 					}
+				} else {
+					String view = "";
+					view = "No game to view, you need to play a game first.";
+					request.getSession().setAttribute("error", view);
+					request.getSession().setAttribute("message", "");
 				}
 				
 				break;
