@@ -13,6 +13,10 @@ public class Player {
 	private String password;
 	private String name;
 	
+	public Player() {
+		
+	}
+	
 	public Player(String username, String password, String name) {
 		this.username = username;
 		this.password = password;

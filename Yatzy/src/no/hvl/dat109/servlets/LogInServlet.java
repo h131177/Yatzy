@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.model.Game;
 import no.hvl.dat109.model.Player;
+import no.hvl.dat109.model.PlayerDAO;
 
 /**
  * Servlet implementation class LogInServlet
@@ -24,6 +26,9 @@ public class LogInServlet extends HttpServlet {
 	private Player player;
 	private Game game;
 	private int count = 0;
+	
+	@EJB
+	private PlayerDAO playerDAO = new PlayerDAO();
 	
 	@Override
 	public void init() throws ServletException {
@@ -39,6 +44,12 @@ public class LogInServlet extends HttpServlet {
 			request.getSession().setAttribute("users", users);
 		}
 		count++;
+		playerDAO.addPlayer(player);
+		List<Player> liste = playerDAO.getPlayers();
+		for(Player p : liste) {
+			System.out.println(p.getUsername());
+		}
+		
 		//Sletter eventuelle feilmeldinger fra register siden
 		String referer = request.getHeader("Referer");
 		if(referer.equals("http://localhost:8080/yatzy/register")) {
