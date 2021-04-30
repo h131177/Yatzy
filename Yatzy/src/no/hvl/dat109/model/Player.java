@@ -1,6 +1,14 @@
 package no.hvl.dat109.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(schema = "yatzy", name = "player")
 public class Player {
+	
+	@Id
 	private String username;
 	private String password;
 	private String name;
